@@ -1,0 +1,158 @@
+<%- include('partials/header') %>
+
+  <section class="page-hero-banner">
+    <div class="container">
+      <h1>
+        <span class="lang-mr">सामाजिक कार्य</span>
+        <span class="lang-en">Social Work</span>
+      </h1>
+    </div>
+  </section>
+  <style>
+    .social-card {
+      background: var(--bg-white);
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--border-gold);
+      padding: 2.5rem;
+      box-shadow: var(--shadow-md);
+      display: flex;
+      gap: 2.5rem;
+      align-items: center;
+      box-sizing: border-box;
+    }
+    .social-card.row-reverse {
+      flex-direction: row-reverse;
+    }
+    .social-badges {
+      display: flex;
+      gap: 0.8rem;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+    .social-text {
+      flex: 1;
+      min-width: 300px;
+      box-sizing: border-box;
+    }
+    .social-text h2 {
+      font-size: 1.9rem;
+      color: var(--temple-maroon);
+      margin: 0.8rem 0 0.6rem;
+    }
+    .social-text .social-desc {
+      font-size: 1rem;
+      color: #555;
+      line-height: 1.6;
+      margin: 0;
+    }
+    .social-img-container {
+      flex: 1;
+      min-width: 300px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-sizing: border-box;
+    }
+    .social-img-container img {
+      display: block !important;
+      max-width: 100% !important;
+      max-height: 350px !important;
+      width: auto !important;
+      height: auto !important;
+      object-fit: contain !important;
+      border: 3px solid var(--royal-gold) !important;
+      border-radius: var(--radius-md) !important;
+      box-shadow: var(--shadow-sm) !important;
+      box-sizing: border-box !important;
+    }
+    @media (max-width: 768px) {
+      .social-card, .social-card.row-reverse {
+        flex-direction: column-reverse !important;
+        padding: 1.2rem;
+        gap: 1.2rem;
+      }
+      .social-card > div {
+        min-width: 0 !important;
+        width: 100%;
+      }
+      .social-text {
+        text-align: center;
+      }
+      .social-text h2 {
+        font-size: 1.3rem;
+      }
+      .social-text .social-desc {
+        font-size: 0.88rem;
+      }
+      .social-badges {
+        justify-content: center;
+      }
+      .social-img-container {
+        width: 100% !important;
+        max-width: 100% !important;
+        height: 200px !important;
+        background: var(--bg-white) !important;
+        border: 3px solid var(--royal-gold) !important;
+        border-radius: var(--radius-md) !important;
+        box-shadow: var(--shadow-sm) !important;
+        overflow: hidden !important;
+      }
+      .social-img-container img {
+        width: 100% !important;
+        height: 100% !important;
+        max-width: 100% !important;
+        max-height: 100% !important;
+        object-fit: contain !important;
+        border: none !important;
+        border-radius: 0 !important;
+        box-shadow: none !important;
+      }
+    }
+    @media (max-width: 480px) {
+      .social-text h2 {
+        font-size: 1.1rem;
+      }
+      .social-text .social-desc {
+        font-size: 0.82rem;
+      }
+      .social-img-container {
+        height: 180px !important;
+      }
+    }
+  </style>
+  <section class="main-content-gradient" style="padding: 5rem 0;">
+    <div class="container">
+      <div style="display: flex; flex-direction: column; gap: 3.5rem;">
+        <% socialWorkData.forEach((work, idx)=> { %>
+          <div class="social-card <%= idx % 2 !== 0 ? 'row-reverse' : '' %>">
+            <div class="social-text">
+              <div class="social-badges">
+                <span
+                  style="font-size: 0.82rem; font-weight: 800; color: var(--primary-saffron); text-transform: uppercase; background: var(--saffron-light); padding: 4px 12px; border-radius: var(--radius-full);">
+                  <span data-mr="<%= work.categoryMr || work.category %>" data-en="<%= work.categoryEn || work.category %>"><%= work.categoryMr || work.category %></span>
+                </span>
+                <% if(work.date) { %>
+                  <span
+                    style="font-size: 0.82rem; font-weight: 700; color: #555; text-transform: uppercase; background: #e0e0e0; padding: 4px 12px; border-radius: var(--radius-full);">
+                    <i class="bi bi-calendar3" style="margin-right: 4px;"></i>
+                    <span data-mr="<%= work.dateMr || work.date %>" data-en="<%= work.dateEn || work.date %>"><%= work.dateMr || work.date %></span>
+                  </span>
+                <% } %>
+              </div>
+              <h2>
+                <span data-mr="<%= work.titleMr || work.title %>" data-en="<%= work.titleEn || work.title %>"><%= work.titleMr || work.title %></span>
+              </h2>
+              <p class="social-desc">
+                <span data-mr="<%= work.descMr || work.desc %>" data-en="<%= work.descEn || work.desc %>"><%= work.descMr || work.desc %></span>
+              </p>
+            </div>
+            <div class="social-img-container">
+              <img src="<%= work.image %>" alt="<%= work.titleMr || work.title %>">
+            </div>
+          </div>
+          <% }); %>
+      </div>
+    </div>
+  </section>
+
+  <%- include('partials/footer') %>
