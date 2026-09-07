@@ -31,6 +31,9 @@ module.exports = {
         googleSheets.appendContactInquiry(contactData)
       ]);
 
+      const db = require('../config/db');
+      db.addLog('CONTACT', `New contact message from ${contactData.name} (${contactData.email})`);
+
       res.json({
         success: true,
         message: 'तुमचा संदेश यशस्वीरित्या पाठवला गेला आहे! मंडळ प्रतिनिधी लवकरच संपर्क करतील.'
