@@ -4,7 +4,7 @@ require('dotenv').config();
 const SMTP_USER = process.env.SMTP_USER || 'mitramsolutions@gmail.com';
 const rawPass = process.env.SMTP_APP_PASSWORD || 'mrgx xivm dxhw pilu';
 const SMTP_APP_PASSWORD = rawPass.replace(/\s+/g, '');
-const MANDAL_EMAIL = process.env.MANDAL_EMAIL || 'mitramsolutions@gmail.com';
+const MANDAL_EMAIL = process.env.MANDAL_EMAIL || 'sahyadrikm.r@gmail.com';
 
 let transporter = null;
 
