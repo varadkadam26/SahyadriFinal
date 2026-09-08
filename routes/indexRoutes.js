@@ -44,7 +44,11 @@ router.get('/contact', (req, res) => {
     activeTab: 'contact'
   });
 });
-router.post('/contact/submit', contactController.submitContactForm);
+const seoController = require('../controllers/seoController');
+
+// Technical SEO Routes
+router.get('/robots.txt', seoController.getRobotsTxt);
+router.get('/sitemap.xml', seoController.getSitemapXml);
 
 
 module.exports = router;

@@ -1,47 +1,57 @@
+<% 
+  const pageLang = typeof lang !== 'undefined' ? lang : 'mr';
+  const activeKey = typeof activeTab !== 'undefined' ? activeTab : 'home';
+  const currentPath = typeof reqPath !== 'undefined' ? reqPath : '/';
+  const seo = typeof seoConfig !== 'undefined' ? seoConfig.getPageSEO(activeKey, pageLang, currentPath) : {
+    title: typeof title !== 'undefined' ? title : 'Sahyadri Krida Mandal',
+    description: 'Official Portal of Sahyadri Krida Mandal.',
+    canonicalUrl: 'https://sahyadrikridamandal.com' + currentPath,
+    image: 'https://sahyadrikridamandal.com/images/sahyadri-ganpati-01.jpg',
+    schemas: []
+  };
+%>
 <!DOCTYPE html>
-<html lang="mr">
+<html lang="<%= pageLang === 'mr' ? 'mr-IN' : 'en-IN' %>">
 
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, user-scalable=no">
-  <meta name="theme-color" content="#B71C1C">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#800020">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="apple-mobile-web-app-title" content="Sahyadri Krida Mandal">
-  <title>
-    <%= typeof title !=='undefined' ? title : 'Sahyadri Krida Mandal' %>
-  </title>
-  <meta name="description"
-    content="Official Portal of Sahyadri Krida Mandal. Immersive digital temple experience, live darshan, history, committee & donation.">
+
+  <title><%= typeof title !== 'undefined' && title ? title : seo.title %></title>
+  <meta name="description" content="<%= seo.description %>">
+  <meta name="robots" content="<%= typeof noindex !== 'undefined' && noindex ? 'noindex, nofollow' : 'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1' %>">
+  <link rel="canonical" href="<%= seo.canonicalUrl %>">
 
   <!-- Open Graph & Social Sharing Meta Tags -->
-  <meta property="og:title" content="<%= typeof title !== 'undefined' ? title : 'Sahyadri Krida Mandal' %>">
-  <meta property="og:description"
-    content="Official Portal of Sahyadri Krida Mandal (Est. 1976). Live Ganeshotsav Aarti Darshan, 10-year historical photo archive, social work & 80G tax exempt donations.">
-  <meta property="og:image" content="/images/sahyadri-ganpati-01.jpg">
-  <meta property="og:url" content="">
+  <meta property="og:site_name" content="Sahyadri Krida Mandal">
+  <meta property="og:title" content="<%= typeof title !== 'undefined' && title ? title : seo.title %>">
+  <meta property="og:description" content="<%= seo.description %>">
+  <meta property="og:image" content="<%= seo.image %>">
+  <meta property="og:url" content="<%= seo.canonicalUrl %>">
   <meta property="og:type" content="website">
-  <meta name="twitter:card" content="summary_large_image">
+  <meta property="og:locale" content="<%= pageLang === 'mr' ? 'mr_IN' : 'en_IN' %>">
 
-  <!-- JSON-LD Structured Data Schema -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "Organization",
-    "name": "Sahyadri Krida Mandal",
-    "alternateName": "Sahyadri Krida Mandal",
-    "url": "",
-    "logo": "/images/sahyadri_logo_transparent.png",
-    "foundingDate": "1976"
-  }
-  </script>
+  <!-- Twitter Cards -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="<%= typeof title !== 'undefined' && title ? title : seo.title %>">
+  <meta name="twitter:description" content="<%= seo.description %>">
+  <meta name="twitter:image" content="<%= seo.image %>">
+
+  <!-- JSON-LD Structured Data Schemas -->
+  <% seo.schemas.forEach(schemaObj => { %>
+    <script type="application/ld+json">
+      <%- JSON.stringify(schemaObj) %>
+    </script>
+  <% }); %>
 
   <!-- Google Web Fonts & Devanagari Typography -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link
-    href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800&family=Noto+Serif+Devanagari:wght@400;500;600;700;800&family=Outfit:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;0,700;0,800;1,400&family=Rozha+One&family=Baloo+2:wght@400;500;600;700;800&display=swap"
-    rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800&family=Noto+Serif+Devanagari:wght@400;500;600;700;800&family=Outfit:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;0,700;0,800;1,400&family=Rozha+One&family=Baloo+2:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
   <!-- FontAwesome & Bootstrap Icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
@@ -67,8 +77,8 @@
     })();
   </script>
   <script src="/js/i18n.js"></script>
-  <!-- Sahyadri Krida Mandal Stylesheet with Cache Buster -->
-  <link rel="stylesheet" href="/css/style.css?v=<%= Date.now() %>">
+  <!-- Sahyadri Krida Mandal Stylesheet -->
+  <link rel="stylesheet" href="/css/style.css?v=1.0.0">
 
   <style>
     /* UNIFIED SINGLE SECTION HEADER - FORCIBLY MERGE TOPBAR AND NAVBAR */

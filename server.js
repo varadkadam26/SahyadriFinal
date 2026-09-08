@@ -35,9 +35,11 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, 'public')));
 
-// i18n Language Cookie Middleware
+const seoConfig = require('./config/seo');
+
+// i18n Language & SEO Metadata Middleware
 app.use((req, res, next) => {
-  let lang = 'en';
+  let lang = 'mr';
   const cookieHeader = req.headers.cookie || '';
   const match = cookieHeader.match(/mcc_lang=(mr|en)/);
   if (match) {
@@ -46,6 +48,8 @@ app.use((req, res, next) => {
     lang = req.query.lang;
   }
   res.locals.lang = lang;
+  res.locals.reqPath = req.path;
+  res.locals.seoConfig = seoConfig;
   next();
 });
 
@@ -69,13 +73,10 @@ app.use((err, req, res, next) => {
 
 // 404 Handler
 app.use((req, res) => {
-  res.status(404).render('index', {
+  res.status(404).render('404', {
     title: '404 - Page Not Found | Sahyadri Krida Mandal',
-    activeTab: 'home',
-    yatraStatus: db.getYatraStatus(),
-    scheduleData: [],
-    glimpsesData: [],
-    socialWorkData: []
+    activeTab: '404',
+    reqPath: req.path
   });
 });
 
