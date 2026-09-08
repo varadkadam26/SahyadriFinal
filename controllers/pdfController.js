@@ -38,7 +38,7 @@ module.exports = {
     drawField('PAN Number (80G)', donation.pan_number || 'NOT PROVIDED', 60, 295);
     drawField('Seva Category', donation.category, 300, 295);
 
-    drawField('Razorpay Payment ID', donation.payment_id || 'pay_Simulated123', 60, 340);
+    drawField('Payment Ref / UTR', donation.payment_id || 'UPI_Direct', 60, 340);
     drawField('Transaction Status', donation.status || 'SUCCESS', 300, 340);
 
     // Amount Highlight Card

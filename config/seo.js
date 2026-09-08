@@ -105,8 +105,8 @@ const PAGE_SEO = {
     path: '/donate',
     titleEn: 'Donate to Sahyadri Krida Mandal | 80G Tax Exempt Online Donation',
     titleMr: 'ऑनलाइन देणगी द्या (८०जी कर सवलत) | सह्याद्री क्रीडा मंडळ',
-    descEn: 'Support Sahyadri Krida Mandal Annadan Mahaprasad and healthcare initiatives. Get official 80G tax benefit receipt via UPI QR or Razorpay.',
-    descMr: 'सह्याद्री क्रीडा मंडळाच्या अन्नदान महाप्रसाद व सामाजिक कार्यासाठी देणगी द्या. यूपीआय QR किंवा रेझरपेद्वारे त्वरित अधिकृत ८०जी कर सवलत पावती मिळवा.',
+    descEn: 'Support Sahyadri Krida Mandal Annadan Mahaprasad and healthcare initiatives. Get official 80G tax benefit receipt via UPI QR or Bank Transfer.',
+    descMr: 'सह्याद्री क्रीडा मंडळाच्या अन्नदान महाप्रसाद व सामाजिक कार्यासाठी देणगी द्या. यूपीआय QR द्वारे बँक खात्यावर थेट देणगी देऊन त्वरित अधिकृत ८०जी कर सवलत पावती मिळवा.',
     image: `${BASE_URL}/images/sahyadri_qr.png`
   }
 };

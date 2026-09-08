@@ -13,7 +13,6 @@
     "express",
     "ejs",
     "pilgrimage",
-    "razorpay",
     "pdfkit",
     "twilio"
   ],
@@ -30,7 +29,6 @@
     "node-cron": "^3.0.3",
     "nodemailer": "^9.0.6",
     "pdfkit": "^0.15.0",
-    "razorpay": "^2.9.4",
     "twilio": "^5.1.0"
   }
 }

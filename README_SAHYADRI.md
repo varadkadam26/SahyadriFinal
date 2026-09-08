@@ -6,7 +6,7 @@ This package preserves the original Express/EJS website structure and styling wh
 1. Open this folder in Antigravity IDE.
 2. Open Terminal.
 3. Run `npm install`.
-4. Configure your existing `.env` values for database, mail, Google Sheets, Razorpay, etc.
+4. Configure your existing `.env` values for database, mail, Google Sheets, etc.
 5. Run `npm start`.
 
 ## Image assets

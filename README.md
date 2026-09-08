@@ -2,7 +2,7 @@
 
 > **सह्याद्री क्रीडा मंडळ | Est. 1976 | Mumbai, Maharashtra**
 
-The official website and backend management system for **Sahyadri Krida Mandal** — one of Mumbai's most iconic Ganpati mandals. Built with Node.js, Express, EJS, and integrated with Razorpay payments, Google Sheets real-time sync, Gmail SMTP, Twilio SMS, and PDFKit receipt generation.
+The official website and backend management system for **Sahyadri Krida Mandal** — one of Mumbai's most iconic Ganpati mandals. Built with Node.js, Express, EJS, and integrated with UPI QR donations, Google Sheets real-time sync, Gmail SMTP, Twilio SMS, and PDFKit receipt generation.
 
 ---
 
@@ -20,17 +20,10 @@ The official website and backend management system for **Sahyadri Krida Mandal**
 | **Advertisement** | Digital advertising information and brochure download |
 | **Contact Us** | Contact form with SMTP email delivery + embedded Google Maps |
 
-### 👕 T-Shirt Booking Portal (``)
-- Official Collar Polo T-Shirt booking with size selection (Kids + Adults)
-- **Razorpay payment gateway** integration — payment before receipt
-- Auto-generated PDF pickup token receipt via PDFKit
-- Real-time sync to **Google Sheets** ("T-Shirt Bookings" tab)
-
 ### 💰 Online Donation Portal (`/donate`)
-- Preset amounts (₹501, ₹1008, ₹2100, ₹5001) + custom amount
-- **Razorpay checkout** with live order creation
+- Custom donation amount + Seva category selection
+- Official UPI QR Code scan & screenshot upload verification
 - 80G Tax Exemption PDF receipt with PAN details
-- Twilio SMS confirmation to donor
 - Real-time sync to **Google Sheets** ("Donations" tab)
 
 ### 📬 Contact Form (`/contact`)
@@ -59,7 +52,7 @@ All form submissions (T-Shirts, Donations, Contact) are automatically appended t
 | **Framework** | Express.js |
 | **Templating** | EJS (Embedded JavaScript) |
 | **Database** | MySQL2 (with in-memory fallback for demo/offline mode) |
-| **Payments** | Razorpay SDK |
+| **Payments** | UPI QR & Direct Bank Transfer |
 | **Email** | Nodemailer (Gmail SMTP) |
 | **SMS** | Twilio API |
 | **PDF Generation** | PDFKit |
@@ -83,7 +76,6 @@ mmmsahyadrikridamandal/
 │
 ├── config/
 │   ├── db.js                    # MySQL + in-memory fallback data store
-│   ├── razorpay.js              # Razorpay SDK setup & order creation
 │   ├── twilio.js                # Twilio SMS client
 │   ├── googleSheets.js          # Google Sheets API client (3-tab sync)
 │   ├── mailer.js                # Nodemailer Gmail SMTP transport
@@ -91,15 +83,14 @@ mmmsahyadrikridamandal/
 │
 ├── controllers/
 │   ├── yatraController.js       # Home, About, Schedule, Glimpses, Social Work, Committee
-│   ├── donationController.js    # Donation CRUD + Razorpay + Sheets sync
-│   ├── tshirtController.js      # T-Shirt booking + Razorpay + Sheets sync
+│   ├── donationController.js    # Donation CRUD + Manual QR + Sheets sync
 │   ├── contactController.js     # Contact form + SMTP email + Sheets sync
-│   ├── pdfController.js         # PDF receipt generation (Donation 80G + T-Shirt token)
+│   ├── pdfController.js         # PDF receipt generation (Donation 80G)
 │   ├── adminController.js       # Admin auth & dashboard
 │   └── excelController.js       # Excel upload, parse, export (offline records)
 │
 ├── routes/
-│   ├── indexRoutes.js           # Public pages + T-Shirt + Contact routes
+│   ├── indexRoutes.js           # Public pages + Contact routes
 │   ├── donationRoutes.js        # Donation API routes
 │   ├── adminRoutes.js           # Admin panel routes
 │   └── excelRoutes.js           # Excel management routes
@@ -108,7 +99,6 @@ mmmsahyadrikridamandal/
 │   ├── index.ejs                # Homepage
 │   ├── about.ejs                # About mandal
 │   ├── donate.ejs               # Donation portal
-│   ├── tshirt.ejs               # T-Shirt booking
 │   ├── contact.ejs              # Contact form + Google Maps
 │   ├── schedule.ejs             # Festival schedule
 │   ├── glimpses.ejs             # Photo gallery
@@ -129,7 +119,6 @@ mmmsahyadrikridamandal/
 │   │   ├── main.js              # Global JS (animations, i18n toggle)
 │   │   ├── i18n.js              # Marathi/English language switcher
 │   │   ├── donate.js            # Donation page logic
-│   │   └── pass-form.js         # Pass registration logic
 │   ├── images/                  # All website images (Ganpati, committee, glimpses, etc.)
 │   └── docs/                    # Downloadable documents (brochure PDF)
 │
@@ -166,10 +155,6 @@ GOOGLE_SHEET_ID=your_google_sheet_id_here
 SMTP_USER=mitramsolutions@gmail.com
 SMTP_APP_PASSWORD=your_gmail_app_password_here
 
-# Razorpay (Payment Gateway)
-RAZORPAY_KEY_ID=your_razorpay_key_id
-RAZORPAY_KEY_SECRET=your_razorpay_key_secret
-
 # MySQL Database (Optional)
 DB_HOST=localhost
 DB_USER=root
@@ -188,7 +173,7 @@ TWILIO_PHONE_NUMBER=+1234567890
 1. Place your Google Cloud **Service Account** `credentials.json` in the project root
 2. Create a Google Spreadsheet and share it with the service account email as **Editor**
 3. Set the `GOOGLE_SHEET_ID` in `.env` (extract from the spreadsheet URL)
-4. On server start, 3 tabs are auto-created: **T-Shirt Bookings**, **Donations**, **Contact Us**
+4. On server start, tabs are auto-created: **Donations**, **Contact Us**
 
 ### 4. Run the Server
 
@@ -219,12 +204,11 @@ Set the environment variables in the Vercel dashboard under **Settings → Envir
 
 ## 📊 Google Sheets Integration
 
-The app syncs data in real-time to a shared Google Spreadsheet with 3 tabs:
+The app syncs data in real-time to a shared Google Spreadsheet with 2 tabs:
 
 | Tab | Triggered When | Columns |
 |-----|----------------|---------|
-| **T-Shirt Bookings** | New t-shirt order confirmed | Receipt No, Name, Phone, Email, Size, Color, Qty, Amount, Address, Payment ID, Status, Date |
-| **Donations** | New donation payment verified | Receipt No, Name, Phone, Email, Amount, Category, PAN, Payment ID, Order ID, Status, Date |
+| **Donations** | New donation payment verified | Receipt No, Name, Phone, Email, Amount, Category, PAN, Payment ID, Status, Date |
 | **Contact Us** | Contact form submitted | Name, Contact, Message, Date |
 
 ---
@@ -235,8 +219,7 @@ The app syncs data in real-time to a shared Google Spreadsheet with 3 tabs:
 |-------|------|-------------|
 | `/` | Home | Hero carousel, highlights, live status |
 | `/about` | About | Mandal history & mission |
-| `/donate` | Donations | Razorpay payment + 80G receipt |
-| `` | T-Shirt Booking | Size selection + Razorpay payment + PDF token |
+| `/donate` | Donations | UPI QR payment + 80G receipt |
 | `/contact` | Contact Us | SMTP email form + Google Maps |
 | `/schedule` | Schedule | Festival day-by-day events |
 | `/glimpses` | Gallery | Decade-wise photo archive |

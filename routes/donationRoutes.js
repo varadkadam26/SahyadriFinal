@@ -29,8 +29,6 @@ const upload = multer({
 });
 
 router.get('/donate', donationController.renderDonationPage);
-router.post('/api/create-donation-order', donationController.createPaymentOrder);
-router.post('/api/confirm-donation', donationController.confirmDonation);
 router.post('/api/submit-manual-donation', upload.single('screenshot'), donationController.submitManualQRDonation);
 router.get('/download-receipt/:receiptNo', donationController.downloadDonationReceipt);
 
