@@ -15,11 +15,11 @@ Official Guide for **Sahyadri Krida Mandal** (`https://sahyadrikridamandal.com/`
 
 ## Step 2: Verify Domain Ownership via DNS
 
-1. Copy the `google-site-verification=...` TXT record provided by Google Search Console.
+1. Copy the <meta name="google-site-verification" content="RPYCXxWBarYuzv4WD-WXYm9lrrQQHtpTywUuRhj2sbQ" /> record provided by Google Search Console.
 2. Log in to your domain registrar (e.g., GoDaddy, Cloudflare, Namecheap).
 3. Add a new **TXT Record**:
    - **Host / Name**: `@`
-   - **Value / Content**: `google-site-verification=...`
+   - **Value / Content**: `google-site-verification=RPYCXxWBarYuzv4WD-WXYm9lrrQQHtpTywUuRhj2sbQ`
    - **TTL**: Auto or 3600
 4. Return to Search Console and click **Verify**.
 
