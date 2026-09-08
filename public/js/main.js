@@ -192,29 +192,66 @@ document.addEventListener('DOMContentLoaded', () => {
     secs: document.getElementById('countSecs')
   };
 
+
+
   let confettiFiredOnArrival = false;
 
   function triggerAagmanConfetti() {
-    if (typeof confetti === 'function') {
-      const duration = 3 * 1000;
-      const animationEnd = Date.now() + duration;
+    if (typeof confetti !== 'function') return;
 
-      const interval = setInterval(function() {
-        const timeLeft = animationEnd - Date.now();
-        if (timeLeft <= 0) {
-          return clearInterval(interval);
-        }
-        const particleCount = 50 * (timeLeft / duration);
+    const brandColors = ['#FFD700', '#F59E0B', '#7F1D1D', '#C9A227', '#EF4444', '#FFFFFF', '#10B981', '#3B82F6'];
 
-        confetti({
-          particleCount,
-          spread: 80,
-          startVelocity: 45,
-          origin: { y: 0.6 },
-          colors: ['#7F1D1D', '#F59E0B', '#D97706', '#FDE68A', '#EF4444', '#FFFFFF']
-        });
-      }, 250);
-    }
+    // 1. Initial Explosive Party Popper Cannons (Left & Right)
+    confetti({
+      particleCount: 100,
+      spread: 70,
+      origin: { x: 0.1, y: 0.7 },
+      colors: brandColors,
+      startVelocity: 60,
+      angle: 60
+    });
+    confetti({
+      particleCount: 100,
+      spread: 70,
+      origin: { x: 0.9, y: 0.7 },
+      colors: brandColors,
+      startVelocity: 60,
+      angle: 120
+    });
+
+    // 2. Center Fireworks Burst
+    setTimeout(() => {
+      confetti({
+        particleCount: 120,
+        spread: 100,
+        origin: { x: 0.5, y: 0.4 },
+        colors: ['#FFD700', '#F59E0B', '#FFFFFF', '#E11D48'],
+        startVelocity: 50,
+        scalar: 1.2
+      });
+    }, 300);
+
+    // 3. Continuous Grand Celebration Rain (5 Seconds)
+    const duration = 5 * 1000;
+    const animationEnd = Date.now() + duration;
+
+    const interval = setInterval(function() {
+      const timeLeft = animationEnd - Date.now();
+      if (timeLeft <= 0) {
+        return clearInterval(interval);
+      }
+      const particleCount = 40 * (timeLeft / duration);
+
+      // Random dual bursts across screen
+      confetti({
+        particleCount,
+        startVelocity: 35,
+        spread: 360,
+        ticks: 60,
+        origin: { x: Math.random(), y: Math.random() * 0.5 },
+        colors: brandColors
+      });
+    }, 250);
   }
 
   function animateCountdownUnit(key, value) {
@@ -246,17 +283,21 @@ document.addEventListener('DOMContentLoaded', () => {
     const diff = countdownTarget - now;
     const flipGrid = document.getElementById('flipClockGrid');
     const celebrationCard = document.getElementById('aagmanCelebrationCard');
+    const mFlipGrid = document.getElementById('mFlipClockGrid');
+    const mCelebrationCard = document.getElementById('mAagmanCelebrationCard');
 
     if (diff <= 0) {
       // Countdown finished - Aagman has arrived!
       if (flipGrid) flipGrid.style.display = 'none';
       if (celebrationCard) celebrationCard.style.display = 'block';
+      if (mFlipGrid) mFlipGrid.style.display = 'none';
+      if (mCelebrationCard) mCelebrationCard.style.display = 'block';
 
       if (!confettiFiredOnArrival) {
         confettiFiredOnArrival = true;
         triggerAagmanConfetti();
         // Repeat confetti bursts periodically during celebration
-        window.setInterval(triggerAagmanConfetti, 15000);
+        window.setInterval(triggerAagmanConfetti, 12000);
       }
 
       Object.entries({ days: '00', hours: '00', mins: '00', secs: '00' })
@@ -267,6 +308,8 @@ document.addEventListener('DOMContentLoaded', () => {
     // Countdown active
     if (flipGrid) flipGrid.style.display = 'grid';
     if (celebrationCard) celebrationCard.style.display = 'none';
+    if (mFlipGrid) mFlipGrid.style.display = 'grid';
+    if (mCelebrationCard) mCelebrationCard.style.display = 'none';
 
     const safeDiff = diff > 0 ? diff : 0;
     const values = {
