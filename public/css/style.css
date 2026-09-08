@@ -1149,8 +1149,8 @@ section {
     align-items: center;
     justify-content: center;
     margin-left: auto;
-    padding-right: 0;
-    margin-right: -5px; /* Push it slightly more to the right edge */
+    padding: 6px 8px;
+    margin-right: 14px; /* Shifted to little left from right screen edge */
   }
 }
 
@@ -2677,8 +2677,11 @@ section {
 
   /* Navigation Bar Drawer */
   .mobile-toggle {
-    display: block;
-    font-size: 1.8rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.85rem;
+    margin-right: 14px; /* Shifted to little left */
   }
 
   .main-nav {
@@ -2857,10 +2860,49 @@ section {
     font-size: 1.4rem !important;
   }
 
-  /* Footer Layout */
+  /* Compact Footer Layout for Mobile */
+  .site-footer {
+    padding: 2.2rem 0 1.2rem !important;
+  }
+
   .footer-grid {
-    grid-template-columns: 1fr;
-    gap: 2rem;
+    grid-template-columns: 1fr 1fr !important;
+    gap: 1.25rem 1rem !important;
+    margin-bottom: 1.5rem !important;
+  }
+
+  .footer-col:first-child,
+  .footer-col:last-child {
+    grid-column: 1 / -1;
+  }
+
+  .footer-col h4 {
+    margin-bottom: 0.75rem !important;
+    font-size: 1.05rem !important;
+    padding-bottom: 0.3rem !important;
+  }
+
+  .footer-links li {
+    margin-bottom: 0.35rem !important;
+  }
+
+  .footer-links a {
+    font-size: 0.85rem !important;
+  }
+
+  .footer-col p {
+    font-size: 0.85rem !important;
+    line-height: 1.5 !important;
+    margin-bottom: 0.75rem !important;
+  }
+
+  .map-responsive {
+    height: 150px !important;
+  }
+
+  .footer-bottom {
+    padding-top: 1.2rem !important;
+    gap: 0.6rem !important;
   }
 
   /* Modals */

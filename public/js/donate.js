@@ -74,7 +74,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
       const confirmData = await confirmRes.json();
       if (confirmData.success) {
-        alert('देणगी यशस्वी झाली! ८०जी कर सवलत पावती तयार होत आहे...');
+        alert('देणगी यशस्वी झाली! देणगी पावती तयार होत आहे...');
         setTimeout(() => {
           window.location.href = `/download-receipt/${confirmData.receipt_no}`;
         }, 800);
@@ -102,9 +102,6 @@ document.addEventListener('DOMContentLoaded', () => {
       return;
     }
 
-    if (parseFloat(amount) >= 2000 && !panNumber) {
-      alert('२००० रुपयांपेक्षा जास्त देणगीसाठी ८०जी कर सवलतीकरिता पॅन कार्ड आवश्यक आहे.');
-    }
 
     // Prepare Donation Payload
     const tempReceiptNo = `SLP-REC-2026-${Math.floor(100 + Math.random() * 900)}`;

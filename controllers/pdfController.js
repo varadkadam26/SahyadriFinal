@@ -35,7 +35,7 @@ module.exports = {
     drawField('Donor Full Name', donation.donor_name, 60, 250);
     drawField('Contact Phone', donation.phone, 300, 250);
 
-    drawField('PAN Number (80G)', donation.pan_number || 'NOT PROVIDED', 60, 295);
+    drawField('PAN Number', donation.pan_number || 'NOT PROVIDED', 60, 295);
     drawField('Seva Category', donation.category, 300, 295);
 
     drawField('Payment Ref / UTR', donation.payment_id || 'UPI_Direct', 60, 340);
@@ -48,8 +48,8 @@ module.exports = {
     doc.fillColor('#92400E').fontSize(10).font('Helvetica-Bold').text('CONTRIBUTION AMOUNT RECEIVED', 75, 408);
     doc.fillColor('#B45309').fontSize(20).font('Helvetica-Bold').text(`₹ ${parseFloat(donation.amount).toLocaleString('en-IN')}/-`, 75, 427);
 
-    // Tax Exemption Note
-    doc.fillColor('#475569').fontSize(9).font('Helvetica-Oblique').text('All donations made to Sahyadri Krida Mandal are 50% tax exempt under Section 80G of the Income Tax Act, 1961.', 40, 505, { align: 'center', width: 515 });
+    // Acknowledgment Note
+    doc.fillColor('#475569').fontSize(9).font('Helvetica-Oblique').text('Thank you for your generous contribution to Sahyadri Krida Mandal.', 40, 505, { align: 'center', width: 515 });
 
     // Signatures
     doc.fillColor('#4A0404').fontSize(10).font('Helvetica-Bold').text('For Sahyadri Krida Mandal', 350, 570);
@@ -159,7 +159,7 @@ module.exports = {
         drawField('Donor Full Name', donation.donor_name, 60, 250);
         drawField('Contact Phone', donation.phone, 300, 250);
 
-        drawField('PAN Number (80G)', donation.pan_number || 'NOT PROVIDED', 60, 295);
+        drawField('PAN Number', donation.pan_number || 'NOT PROVIDED', 60, 295);
         drawField('Seva Category', donation.category, 300, 295);
 
         drawField('Payment Ref / ID', donation.payment_id || donation.payment_ref || 'pay_UPI_Direct', 60, 340);
@@ -172,8 +172,8 @@ module.exports = {
         doc.fillColor('#92400E').fontSize(10).font('Helvetica-Bold').text('CONTRIBUTION AMOUNT RECEIVED', 75, 408);
         doc.fillColor('#B45309').fontSize(20).font('Helvetica-Bold').text(`₹ ${parseFloat(donation.amount).toLocaleString('en-IN')}/-`, 75, 427);
 
-        // Tax Exemption Note
-        doc.fillColor('#475569').fontSize(9).font('Helvetica-Oblique').text('All donations made to Sahyadri Krida Mandal are 50% tax exempt under Section 80G of the Income Tax Act, 1961.', 40, 505, { align: 'center', width: 515 });
+        // Acknowledgment Note
+        doc.fillColor('#475569').fontSize(9).font('Helvetica-Oblique').text('Thank you for your generous contribution to Sahyadri Krida Mandal.', 40, 505, { align: 'center', width: 515 });
 
         // Signatures
         doc.fillColor('#4A0404').fontSize(10).font('Helvetica-Bold').text('For Sahyadri Krida Mandal', 350, 570);

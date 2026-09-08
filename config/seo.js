@@ -33,8 +33,8 @@ const PAGE_SEO = {
     path: '/',
     titleEn: 'Sahyadri Krida Mandal | Famous Ganpati Mandal in Chembur, Mumbai (Est. 1976)',
     titleMr: 'सह्याद्री क्रीडा मंडळ | मुंबईतील प्रसिद्ध गणेशोत्सव मंडळ (स्थापना १९७६)',
-    descEn: 'Official Portal of Sahyadri Krida Mandal (Est. 1976), Tilak Nagar, Chembur, Mumbai. Live Ganeshotsav Aarti Darshan, 10-year photo archives, social work & 80G donations.',
-    descMr: 'सह्याद्री क्रीडा मंडळ (स्थापना १९७६), टिळक नगर, चेंबूर, मुंबई अधिकृत पोर्टल. साक्षात आरती दर्शन, १० वर्षांचे देखावे, सामाजिक कार्य आणि ८०जी कर सवलत देणगी.',
+    descEn: 'Official Portal of Sahyadri Krida Mandal (Est. 1976), Tilak Nagar, Chembur, Mumbai. Live Ganeshotsav Aarti Darshan, 10-year photo archives, social work & online donations.',
+    descMr: 'सह्याद्री क्रीडा मंडळ (स्थापना १९७६), टिळक नगर, चेंबूर, मुंबई अधिकृत पोर्टल. साक्षात आरती दर्शन, १० वर्षांचे देखावे, सामाजिक कार्य आणि ऑनलाइन देणगी.',
     image: `${BASE_URL}/images/sahyadri-ganpati-01.jpg`
   },
   about: {
