@@ -116,11 +116,11 @@ async function sendDonationEmail(donation, pdfBuffer = null, screenshotPath = nu
     <div style="font-family: 'Segoe UI', Arial, sans-serif; max-width: 600px; margin: 0 auto; border: 2px solid #C0972D; border-radius: 12px; overflow: hidden;">
       <div style="background: linear-gradient(135deg, #800020, #5C0015); padding: 24px; text-align: center;">
         <h2 style="color: #F5D98E; margin: 0; font-size: 22px;">🙏 देणगी पावती / Donation Receipt</h2>
-        <p style="color: #E8C86E; margin: 6px 0 0; font-size: 14px;">Sahyadri Krida Mandal — 80G Tax Benefit Receipt</p>
+        <p style="color: #E8C86E; margin: 6px 0 0; font-size: 14px;">Sahyadri Krida Mandal — Official Donation Receipt</p>
       </div>
       <div style="padding: 28px; background: #FFF9F0;">
         <p style="color: #800020; font-size: 16px; font-weight: bold;">जय गणेश! जय महाराष्ट्र!</p>
-        <p style="color: #333; line-height: 1.6;">सह्याद्री क्रीडा मंडळास (Sahyadri Krida Mandal Trust) देणगी दिल्याबद्दल मनापासून धन्यवाद. तुमची अधिकृत ८०जी देणगी पावती PDF सोबत जोडली आहे.</p>
+        <p style="color: #333; line-height: 1.6;">सह्याद्री क्रीडा मंडळास (Sahyadri Krida Mandal Trust) देणगी दिल्याबद्दल मनापासून धन्यवाद. तुमची अधिकृत देणगी पावती PDF सोबत जोडली आहे.</p>
         
         <table style="width: 100%; border-collapse: collapse; margin-top: 16px;">
           <tr style="background: #FEF3E2;">

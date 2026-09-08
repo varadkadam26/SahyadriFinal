@@ -30,8 +30,8 @@
         <div style="text-align: center; margin-bottom: 2rem;">
           <span style="background: rgba(245, 158, 11, 0.15); color: #7F1D1D; border: 1px solid #F59E0B; padding: 6px 16px; border-radius: 20px; font-weight: 800; font-size: 0.88rem; display: inline-flex; align-items: center; gap: 6px;">
             <i class="fa-solid fa-shield-halved" style="color: #D97706;"></i>
-            <span class="lang-mr">अधिकृत QR कोडद्वारे देणगी (८०जी पावती ईमेलवर पाठवली जाईल)</span>
-            <span class="lang-en">Official QR Payment (80G Receipt Emailed Instantly)</span>
+            <span class="lang-mr">अधिकृत QR कोडद्वारे देणगी (पावती ईमेलवर पाठवली जाईल)</span>
+            <span class="lang-en">Official QR Payment (Receipt Emailed Instantly)</span>
           </span>
 
           <h2 style="font-size: 1.8rem; color: var(--temple-maroon); margin-top: 1rem; margin-bottom: 0.4rem;">
@@ -125,11 +125,11 @@
             </div>
           </div>
 
-          <!-- PAN Card for 80G -->
+          <!-- PAN Card (Optional) -->
           <div style="margin-bottom: 1.5rem;">
             <label style="display: block; font-size: 0.9rem; font-weight: 700; margin-bottom: 0.4rem; color: var(--text-main);">
-              <span class="lang-mr">पॅन कार्ड नंबर (८०जी कर सवलतीसाठी पर्याय)</span>
-              <span class="lang-en">PAN Card Number (For 80G Tax Exemption)</span>
+              <span class="lang-mr">पॅन कार्ड नंबर (पर्यायी)</span>
+              <span class="lang-en">PAN Card Number (Optional)</span>
             </label>
             <input type="text" id="qrPan" placeholder="उदा. ABCDE1234F" style="width: 100%; padding: 0.75rem 1rem; border-radius: var(--radius-sm); border: 1px solid var(--border-gold); font-size: 0.95rem; text-transform: uppercase;">
           </div>
@@ -202,7 +202,7 @@
           <!-- PAN Card -->
           <div style="margin-bottom: 2rem;">
             <label style="display: block; font-size: 0.9rem; font-weight: 700; margin-bottom: 0.4rem; color: var(--text-main);">
-              पॅन कार्ड नंबर (८०जी कर सवलत पावतीसाठी)
+              पॅन कार्ड नंबर (पर्यायी)
             </label>
             <input type="text" id="donorPan" placeholder="उदा. ABCDE1234F" style="width: 100%; padding: 0.75rem 1rem; border-radius: var(--radius-sm); border: 1px solid var(--border-gold); font-size: 0.95rem; text-transform: uppercase;">
           </div>
@@ -399,7 +399,7 @@
               });
               const confirmData = await confirmRes.json();
               if (confirmData.success) {
-                alert('देणगी यशस्वी झाली! तुमची अधिकृत ८०जी पावती डाउनलोड होत आहे.');
+                alert('देणगी यशस्वी झाली! तुमची अधिकृत पावती डाउनलोड होत आहे.');
                 window.location.href = `/download-receipt/${confirmData.receipt_no}`;
               } else {
                 alert(confirmData.message || 'Payment verification failed.');
@@ -415,7 +415,7 @@
                 amount: orderData.order ? orderData.order.amount : Math.round(amountVal * 100),
                 currency: 'INR',
                 name: 'Sahyadri Krida Mandal',
-                description: 'Ganeshotsav Seva Donation (80G Tax Exempt)',
+                description: 'Ganeshotsav Seva Donation',
                 image: '/images/sahyadri_logo_transparent.png',
                 order_id: orderData.order ? orderData.order.order_id : '',
                 prefill: {

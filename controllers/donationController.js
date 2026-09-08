@@ -10,7 +10,7 @@ module.exports = {
   // Render Donation Page
   renderDonationPage(req, res) {
     res.render('donate', {
-      title: 'ऑनलाइन देणगी पोर्टल (८०जी कर सवलत) | Sahyadri Krida Mandal',
+      title: 'ऑनलाइन देणगी पोर्टल | Sahyadri Krida Mandal',
       activeTab: 'donate',
       razorpayKeyId: razorpay.getKeyId()
     });
@@ -92,7 +92,7 @@ module.exports = {
     }
   },
 
-  // Download 80G PDF Receipt
+  // Download PDF Receipt
   async downloadDonationReceipt(req, res) {
     const { receiptNo } = req.params;
     const donation = await db.getDonationByReceipt(receiptNo);
@@ -135,7 +135,7 @@ module.exports = {
       const createdDonation = await db.createDonation(donationData);
       db.addLog('DONATION', `New QR Donation received: ₹${createdDonation.amount} from ${createdDonation.donor_name} (UTR: ${createdDonation.payment_id})`);
 
-      // Generate 80G PDF Receipt Buffer
+      // Generate PDF Receipt Buffer
       let pdfBuffer = null;
       try {
         pdfBuffer = await pdfController.generateDonationPDFBuffer(createdDonation);
@@ -158,7 +158,7 @@ module.exports = {
       res.json({
         success: true,
         receipt_no: createdDonation.receipt_no,
-        message: 'जय गणेश! तुमची देणगी व पेमेंट स्क्रीनशॉट यशस्वीरित्या नोंदवले गेले आहेत. अधिकृत ८०जी पावती ईमेलवर पाठवली गेली आहे.'
+        message: 'जय गणेश! तुमची देणगी व पेमेंट स्क्रीनशॉट यशस्वीरित्या नोंदवले गेले आहेत. अधिकृत देणगी पावती ईमेलवर पाठवली गेली आहे.'
       });
     } catch (err) {
       console.error('Submit manual QR donation error:', err);

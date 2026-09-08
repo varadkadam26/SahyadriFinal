@@ -653,7 +653,7 @@ document.addEventListener('DOMContentLoaded', () => {
       image: '/images/sahyadri-decoration-temple.jpg',
       feat1: 'काष्ठ सिंहासन: पेशवाई नक्षीकाम',
       feat2: 'डिजिटल: २४/७ लाईव्ह दर्शन',
-      feat3: 'कर सवलत: ८०जी देणगी पावती'
+      feat3: 'सेवा: ऑनलाईन देणगी'
     }
   };
 
