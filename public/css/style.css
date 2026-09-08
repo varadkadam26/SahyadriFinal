@@ -1149,8 +1149,8 @@ section {
     align-items: center;
     justify-content: center;
     margin-left: auto;
-    padding-right: 0;
-    margin-right: -5px; /* Push it slightly more to the right edge */
+    padding: 6px 8px;
+    margin-right: 14px; /* Shifted to little left from right screen edge */
   }
 }
 
@@ -2677,8 +2677,11 @@ section {
 
   /* Navigation Bar Drawer */
   .mobile-toggle {
-    display: block;
-    font-size: 1.8rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.85rem;
+    margin-right: 14px; /* Shifted to little left */
   }
 
   .main-nav {
