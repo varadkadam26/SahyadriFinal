@@ -5,7 +5,7 @@ const SCHEDULE_LOCATION_EN = 'Tilak Nagar Samaj Mandir Auditorium, opposite Buil
 const SCHEDULE_LOCATION_MR = 'टिळक नगर समाज मंदिर सभागृह, लोकमान्य टिळक क्रीडांगण, इमारत २२ समोर, टिळक नगर, चेंबूर, मुंबई- ४०००८९.';
 
 const scheduleData = [
-  { day: 1, dateMr: 'सोमवार १४ सप्टेंबर २०२६, सकाळी ११:०० वा.', dateEn: 'Monday 14 September 2026, 11:00 AM', titleMr: '"श्री" ची स्थापना, पूजा, आरती', titleEn: 'Shri Sthapana, Pooja, Aarti' },
+  { day: 1, dateMr: 'सोमवार १४ सप्टेंबर २०२६, सकाळी ११:०० वा.', dateEn: 'Monday 14 September 2026, 11:00 AM', titleMr: '"श्रीं" ची स्थापना, पूजा, आरती', titleEn: 'Ganpati Sthapana, Pooja, Aarti' },
   { day: 2, dateMr: 'सोमवार १४ सप्टेंबर २०२६, सायं. ६:०० वा.', dateEn: 'Monday 14 September 2026, 6:00 PM', titleMr: 'उत्सव सजावटीचा उद्घाटन सोहळा', titleEn: 'Festival Decoration Inauguration Ceremony' },
   { day: 3, dateMr: 'सोमवार १४ सप्टेंबर २०२६, सायं. ६:३० वा.', dateEn: 'Monday 14 September 2026, 6:30 PM', titleMr: 'उत्सव स्मरणिकेचा प्रकाशन सोहळा', titleEn: 'Festival Souvenir Publication Ceremony' },
   { day: 4, dateMr: 'बुधवार २३ सप्टेंबर २०२६, दुपारी १:०० वा.', dateEn: 'Wednesday 23 September 2026, 1:00 PM', titleMr: 'श्री सत्यनारायणाची महापूजा', titleEn: 'Shri Satyanarayan Mahapooja' },
