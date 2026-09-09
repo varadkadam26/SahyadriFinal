@@ -1,24 +1,64 @@
 <%- include('partials/header') %>
 
+<style>
+  /* Mobile Fixes for Donation Page */
+  @media (max-width: 768px) {
+    .donate-main-section {
+      padding: 1.5rem 0.5rem !important;
+    }
+    .donate-card {
+      padding: 1.2rem !important;
+      border-radius: 12px !important;
+    }
+    .donate-badge {
+      font-size: 0.75rem !important;
+      padding: 6px 10px !important;
+      white-space: normal !important;
+      text-align: left;
+    }
+    .donate-title {
+      font-size: 1.4rem !important;
+    }
+    .donate-qr-frame {
+      padding: 1rem !important;
+      margin-bottom: 1.5rem !important;
+    }
+    .donate-upload-box {
+      padding: 1rem !important;
+    }
+    .donate-input {
+      padding: 0.65rem 0.8rem !important;
+      font-size: 1rem !important; /* Prevents iOS zoom */
+    }
+    #btnQRSubmit {
+      padding: 0.8rem 1rem !important;
+      font-size: 0.95rem !important;
+    }
+  }
+</style>
+
   <section class="page-hero-banner">
     <div class="container">
-      <h1 data-i18n="donate_title">देणगी / Donate</h1>
+      <h1>
+        <span class="lang-mr">देणगी</span>
+        <span class="lang-en">Donate</span>
+      </h1>
     </div>
   </section>
 
-  <section class="main-content-gradient" style="padding: 4rem 0;">
+  <section class="main-content-gradient donate-main-section" style="padding: 4rem 0;">
     <div class="container" style="max-width: 920px;">
 
       <!-- OFFICIAL UPI QR CODE & SCREENSHOT UPLOAD FORM -->
-      <div id="modeQR" class="card-temple" style="padding: 2.5rem; border: 2px solid var(--royal-gold);">
+      <div id="modeQR" class="card-temple donate-card" style="padding: 2.5rem; border: 2px solid var(--royal-gold);">
         <div style="text-align: center; margin-bottom: 2rem;">
-          <span style="background: rgba(245, 158, 11, 0.15); color: #7F1D1D; border: 1px solid #F59E0B; padding: 6px 16px; border-radius: 20px; font-weight: 800; font-size: 0.88rem; display: inline-flex; align-items: center; gap: 6px;">
+          <span class="donate-badge" style="background: rgba(245, 158, 11, 0.15); color: #7F1D1D; border: 1px solid #F59E0B; padding: 6px 16px; border-radius: 20px; font-weight: 800; font-size: 0.88rem; display: inline-flex; align-items: center; gap: 6px; flex-wrap: wrap; justify-content: center;">
             <i class="fa-solid fa-shield-halved" style="color: #D97706;"></i>
             <span class="lang-mr">अधिकृत QR कोडद्वारे देणगी (पावती ईमेलवर पाठवली जाईल)</span>
             <span class="lang-en">Official QR Payment (Receipt Emailed Instantly)</span>
           </span>
 
-          <h2 style="font-size: 1.8rem; color: var(--temple-maroon); margin-top: 1rem; margin-bottom: 0.4rem;">
+          <h2 class="donate-title" style="font-size: 1.8rem; color: var(--temple-maroon); margin-top: 1rem; margin-bottom: 0.4rem;">
             <span class="lang-mr">स्कॅन करून देणगी द्या (Scan & Pay)</span>
             <span class="lang-en">Scan QR & Donate</span>
           </h2>
@@ -29,7 +69,7 @@
         </div>
 
         <!-- Official QR Code Showcase Frame -->
-        <div style="background: linear-gradient(135deg, #FFF9F0, #FEF3E2); border: 2px dashed #D97706; padding: 1.8rem; border-radius: 16px; text-align: center; margin-bottom: 2.5rem; box-shadow: 0 4px 20px rgba(0,0,0,0.06);">
+        <div class="donate-qr-frame" style="background: linear-gradient(135deg, #FFF9F0, #FEF3E2); border: 2px dashed #D97706; padding: 1.8rem; border-radius: 16px; text-align: center; margin-bottom: 2.5rem; box-shadow: 0 4px 20px rgba(0,0,0,0.06);">
           <div style="display: inline-block; background: #FFFFFF; padding: 1rem; border-radius: 12px; border: 3px solid #7F1D1D; box-shadow: 0 6px 20px rgba(127,29,29,0.15); margin-bottom: 1rem;">
             <img src="/images/sahyadri_qr.png" alt="Sahyadri Krida Mandal Official QR Code" style="max-width: 260px; width: 100%; height: auto; display: block; border-radius: 6px;">
           </div>
@@ -53,7 +93,7 @@
               <span class="lang-mr">देणगी दिलेली रक्कम (₹) *</span>
               <span class="lang-en">Donated Amount (₹) *</span>
             </label>
-            <input type="number" id="qrAmount" min="11" required placeholder="उदा. ५०१ / 1100" style="width: 100%; padding: 0.85rem 1.2rem; border-radius: var(--radius-sm); border: 1px solid var(--border-gold); font-size: 1.1rem; font-weight: 700; color: var(--temple-maroon);">
+            <input type="number" id="qrAmount" class="donate-input" min="11" required placeholder="501" style="width: 100%; padding: 0.85rem 1.2rem; border-radius: var(--radius-sm); border: 1px solid var(--border-gold); font-size: 1.1rem; font-weight: 700; color: var(--temple-maroon);">
           </div>
 
           <!-- Donor Name -->
@@ -62,7 +102,7 @@
               <span class="lang-mr">देणगीदाराचे संपूर्ण नाव *</span>
               <span class="lang-en">Donor Full Name *</span>
             </label>
-            <input type="text" id="qrName" required placeholder="संपूर्ण नाव टाका | Enter Full Name" style="width: 100%; padding: 0.75rem 1rem; border-radius: var(--radius-sm); border: 1px solid var(--border-gold); font-size: 0.95rem;">
+            <input type="text" id="qrName" class="donate-input" required placeholder="Enter Full Name" style="width: 100%; padding: 0.75rem 1rem; border-radius: var(--radius-sm); border: 1px solid var(--border-gold); font-size: 0.95rem;">
           </div>
 
           <!-- Phone & Email Grid -->
@@ -72,7 +112,7 @@
                 <span class="lang-mr">मोबाईल नंबर *</span>
                 <span class="lang-en">Mobile Number *</span>
               </label>
-              <input type="tel" id="qrPhone" required placeholder="१० अंकी मोबाईल नंबर" style="width: 100%; padding: 0.75rem 1rem; border-radius: var(--radius-sm); border: 1px solid var(--border-gold); font-size: 0.95rem;">
+              <input type="tel" id="qrPhone" class="donate-input" required placeholder="१० अंकी मोबाईल नंबर" style="width: 100%; padding: 0.75rem 1rem; border-radius: var(--radius-sm); border: 1px solid var(--border-gold); font-size: 0.95rem;">
             </div>
 
             <div>
@@ -80,7 +120,7 @@
                 <span class="lang-mr">ईमेल पत्ता (PDF पावतीसाठी आवश्यक) *</span>
                 <span class="lang-en">Email Address (Required for PDF Receipt) *</span>
               </label>
-              <input type="email" id="qrEmail" required placeholder="पावती पाठवण्यासाठी ईमेल | yourname@gmail.com" style="width: 100%; padding: 0.75rem 1rem; border-radius: var(--radius-sm); border: 1px solid var(--border-gold); font-size: 0.95rem;">
+              <input type="email" id="qrEmail" class="donate-input" required placeholder="yourname@gmail.com" style="width: 100%; padding: 0.75rem 1rem; border-radius: var(--radius-sm); border: 1px solid var(--border-gold); font-size: 0.95rem;">
             </div>
           </div>
 
@@ -88,10 +128,10 @@
           <div class="form-grid-2" style="margin-bottom: 1.5rem;">
             <div>
               <label style="display: block; font-size: 0.9rem; font-weight: 700; margin-bottom: 0.4rem; color: var(--text-main);">
-                <span class="lang-mr">सेवा प्रकार / Category</span>
+                <span class="lang-mr">सेवा प्रकार</span>
                 <span class="lang-en">Seva Category</span>
               </label>
-              <select id="qrCategory" style="width: 100%; padding: 0.75rem 1rem; border-radius: var(--radius-sm); border: 1px solid var(--border-gold); font-size: 0.95rem; background: #FFFFFF;">
+              <select id="qrCategory" class="donate-input" style="width: 100%; padding: 0.75rem 1rem; border-radius: var(--radius-sm); border: 1px solid var(--border-gold); font-size: 0.95rem; background: #FFFFFF;">
                 <option value="General Mandal Donation & Seva">सामान्य देणगी व मंडळ सेवा</option>
                 <option value="Annadan Mahaprasad Seva">अन्नदान महाप्रसाद सेवा</option>
                 <option value="Mandap & Pushpa Alankar Seva">मंडप व पुष्प अलंकार सेवा</option>
@@ -102,10 +142,10 @@
 
             <div>
               <label style="display: block; font-size: 0.9rem; font-weight: 700; margin-bottom: 0.4rem; color: var(--text-main);">
-                <span class="lang-mr">पेमेंट UTR / रेफरन्स नंबर (पर्यायी)</span>
-                <span class="lang-en">Payment UTR / Ref No (Optional)</span>
+                <span class="lang-mr">पेमेंट UTR नंबर (पर्यायी)</span>
+                <span class="lang-en">Payment UTR No (Optional)</span>
               </label>
-              <input type="text" id="qrRef" placeholder="१२ अंकी UTR किंवा Txn ID" style="width: 100%; padding: 0.75rem 1rem; border-radius: var(--radius-sm); border: 1px solid var(--border-gold); font-size: 0.95rem;">
+              <input type="text" id="qrRef" class="donate-input" placeholder="१२ अंकी UTR किंवा Txn ID" style="width: 100%; padding: 0.75rem 1rem; border-radius: var(--radius-sm); border: 1px solid var(--border-gold); font-size: 0.95rem;">
             </div>
           </div>
 
@@ -115,11 +155,11 @@
               <span class="lang-mr">पॅन कार्ड नंबर (पर्यायी)</span>
               <span class="lang-en">PAN Card Number (Optional)</span>
             </label>
-            <input type="text" id="qrPan" placeholder="उदा. ABCDE1234F" style="width: 100%; padding: 0.75rem 1rem; border-radius: var(--radius-sm); border: 1px solid var(--border-gold); font-size: 0.95rem; text-transform: uppercase;">
+            <input type="text" id="qrPan" class="donate-input" placeholder="ABCDE1234F" style="width: 100%; padding: 0.75rem 1rem; border-radius: var(--radius-sm); border: 1px solid var(--border-gold); font-size: 0.95rem; text-transform: uppercase;">
           </div>
 
           <!-- Screenshot File Upload Input -->
-          <div style="margin-bottom: 2rem; background: #FFFDF9; border: 2px dashed var(--border-gold); padding: 1.5rem; border-radius: 12px; text-align: center;">
+          <div class="donate-upload-box" style="margin-bottom: 2rem; background: #FFFDF9; border: 2px dashed var(--border-gold); padding: 1.5rem; border-radius: 12px; text-align: center;">
             <label style="display: block; font-size: 1rem; font-weight: 800; margin-bottom: 0.5rem; color: #7F1D1D;">
               <i class="fa-solid fa-cloud-arrow-up" style="color: var(--primary-saffron); margin-right: 6px;"></i>
               <span class="lang-mr">पेमेंट स्क्रीनशॉट अपलोड करा *</span>
@@ -141,8 +181,7 @@
           </button>
         </form>
       </div>
-
-    });
-  </script>
+    </div>
+  </section>
 
 <%- include('partials/footer') %>

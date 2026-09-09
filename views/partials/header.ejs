@@ -79,7 +79,7 @@
   </script>
   <script src="/js/i18n.js"></script>
   <!-- Sahyadri Krida Mandal Stylesheet -->
-  <link rel="stylesheet" href="/css/style.css?v=1.0.2">
+  <link rel="stylesheet" href="/css/style.css?v=1.0.5">
 
   <style>
     /* UNIFIED SINGLE SECTION HEADER - FORCIBLY MERGE TOPBAR AND NAVBAR */
@@ -218,27 +218,31 @@
       .hero-carousel {
         height: 100vh !important;
         height: 100dvh !important;
-        max-height: 850px !important;
-        min-height: 620px !important;
+        max-height: none !important;
+        min-height: 500px !important;
         position: relative !important;
         overflow: hidden !important;
       }
 
       .hero-slide-bg {
-        filter: brightness(0.68) contrast(1.05) saturate(1.08) !important;
+        filter: brightness(0.9) contrast(1.1) saturate(1.15) !important;
+        image-rendering: -webkit-optimize-contrast;
+        image-rendering: high-quality;
       }
 
-      /* Precise mobile alignment & framing for each slideshow photo */
+      /* Slider 1: Ganpati is in the center */
       .hero-carousel .hero-slide-bg.hero-img-4 {
-        object-position: 50% 5% !important;
+        object-position: 50% 20% !important;
       }
 
+      /* Slider 2: Ganpati is on the right side */
       .hero-carousel .hero-slide-bg.hero-img-5 {
-        object-position: 76% 28% !important;
+        object-position: 75% 20% !important;
       }
 
+      /* Slider 3: Ganpati is on the right side */
       .hero-carousel .hero-slide-bg.hero-img-6 {
-        object-position: 77% 12% !important;
+        object-position: 75% 15% !important;
       }
 
       .hero-mobile-content {

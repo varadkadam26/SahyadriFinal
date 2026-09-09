@@ -2011,28 +2011,37 @@ section {
   .hero-carousel {
     height: 100vh;
     height: 100dvh;
-    min-height: 620px;
-    max-height: 850px;
+    min-height: 500px;
+    max-height: none;
   }
 
   .hero-slide-bg {
-    filter: brightness(0.68) contrast(1.05) saturate(1.08);
+    filter: brightness(0.9) contrast(1.1) saturate(1.15) !important;
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: high-quality;
+    animation: kenBurnsMobile 14s ease-in-out infinite alternate;
+  }
+
+  @keyframes kenBurnsMobile {
+    0% { transform: scale(1) translate(0, 0); }
+    100% { transform: scale(1.02) translate(-0.2%, -0.2%); }
   }
 
   /* Override per-image for best mobile framing */
+  /* Slider 1: Ganpati is in the center */
   .hero-slide-bg.hero-img-4,
   .hero-img-4 {
-    object-position: 50% 5% !important;
+    object-position: center 35% !important;
   }
 
   .hero-slide-bg.hero-img-5,
   .hero-img-5 {
-    object-position: 76% 28% !important;
+    object-position: center 30% !important;
   }
 
   .hero-slide-bg.hero-img-6,
   .hero-img-6 {
-    object-position: 77% 12% !important;
+    object-position: center 40% !important;
   }
 
 }
@@ -3144,26 +3153,29 @@ section {
 
   .hero-carousel {
     height: 100vh !important;
-    max-height: 1100px !important;
-    min-height: 750px !important;
+    height: 100dvh !important;
+    max-height: none !important;
+    min-height: 500px !important;
     position: relative !important;
     overflow: hidden !important;
   }
 
   .hero-slide-bg {
-    filter: brightness(0.68) contrast(1.05) saturate(1.08) !important;
+    filter: brightness(0.9) contrast(1.1) saturate(1.15) !important;
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: high-quality;
   }
 
   .hero-slide-bg.hero-img-4 {
-    object-position: 50% 5% !important;
+    object-position: 50% 20% !important;
   }
 
   .hero-slide-bg.hero-img-5 {
-    object-position: 76% 28% !important;
+    object-position: 75% 20% !important;
   }
 
   .hero-slide-bg.hero-img-6 {
-    object-position: 77% 12% !important;
+    object-position: 75% 15% !important;
   }
 
   .hero-mobile-content {
@@ -3193,29 +3205,31 @@ section {
   /* 2. Main Title */
   .m-hero-title {
     font-family: 'Outfit', 'Baloo 2', sans-serif !important;
-    font-size: 1.55rem !important;
+    font-size: clamp(1.1rem, 5.5vw, 1.55rem) !important;
     font-weight: 800 !important;
     color: #FFFFFF !important;
     text-shadow: 0 3px 12px rgba(0, 0, 0, 0.9) !important;
     margin: 0 0 0.2rem 0 !important;
     text-align: center !important;
     line-height: 1.2 !important;
-    white-space: normal !important;
+    white-space: nowrap !important;
+    width: 100% !important;
   }
 
   /* 3. Subtitle */
   .m-hero-subtitle {
     font-family: var(--font-en-head) !important;
-    font-size: 0.62rem !important;
+    font-size: clamp(0.5rem, 2.3vw, 0.65rem) !important;
     font-weight: 700 !important;
     color: #D4AF37 !important;
-    letter-spacing: 1.2px !important;
+    letter-spacing: 1px !important;
     text-transform: uppercase !important;
     text-shadow: 0 2px 8px rgba(0, 0, 0, 0.95) !important;
     margin: 0 0 0.9rem 0 !important;
     text-align: center !important;
     line-height: 1.35 !important;
-    white-space: normal !important;
+    white-space: nowrap !important;
+    width: 100% !important;
   }
 
   /* 4. Two Buttons */
