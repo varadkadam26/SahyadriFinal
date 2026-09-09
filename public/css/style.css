@@ -3166,16 +3166,15 @@ section {
     image-rendering: high-quality;
   }
 
-  .hero-slide-bg.hero-img-4 {
-    object-position: 50% 20% !important;
-  }
-
+  /* Mobile Hero Sliders 1 & 2: Center horizontally (50%) */
+  .hero-slide-bg.hero-img-4,
   .hero-slide-bg.hero-img-5 {
-    object-position: 75% 20% !important;
+    object-position: 50% 0% !important;
   }
-
+  
+  /* Mobile Hero Slider 3: Focus on 80% horizontally to center Ganpati */
   .hero-slide-bg.hero-img-6 {
-    object-position: 75% 15% !important;
+    object-position: 80% 0% !important;
   }
 
   .hero-mobile-content {
