@@ -1,0 +1,78 @@
+﻿<%- include('partials/header') %>
+
+<section class="page-hero-banner">
+  <div class="container">
+    <h1 data-i18n="schedule_page_title">वेळापत्रक / Schedule</h1>
+  </div>
+</section>
+
+<style>
+  .schedule-card {
+    display: flex;
+    gap: 2rem;
+    align-items: center;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    text-align: left;
+    padding: 2rem;
+    border-radius: var(--radius-lg);
+    background: var(--bg-white);
+    border: 1px solid var(--border-gold);
+    box-shadow: var(--shadow-sm);
+  }
+  .schedule-day-badge {
+    background: var(--temple-maroon);
+    color: var(--gold-soft);
+    padding: 1rem 1.5rem;
+    border-radius: var(--radius-md);
+    text-align: center;
+    min-width: 100px;
+    border: 2px solid var(--royal-gold);
+  }
+  .schedule-content {
+    flex: 1;
+    min-width: 250px;
+  }
+  @media (max-width: 600px) {
+    .schedule-card {
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      justify-content: center;
+    }
+    .schedule-content {
+      min-width: unset;
+      width: 100%;
+    }
+    .schedule-content p {
+      justify-content: center;
+    }
+  }
+</style>
+
+<section class="main-content-gradient" style="padding: 5rem 0;">
+  <div class="container">
+
+    <div style="display: flex; flex-direction: column; gap: 2rem;">
+      <% scheduleData.forEach(evt => { %>
+        <div class="card-temple reveal-on-scroll schedule-card">
+          <div class="schedule-day-badge">
+            <span style="font-size: 0.8rem; font-weight: 800; text-transform: uppercase;">क्र. / No.</span>
+            <h2 style="font-size: 2rem; color: var(--gold-soft); margin: 0; line-height: 1;"><%= evt.day %></h2>
+          </div>
+
+          <div class="schedule-content">
+            <h3 style="font-size: 1.6rem; color: var(--temple-maroon); margin: 0 0 0.5rem 0;" data-mr="<%= evt.titleMr %>" data-en="<%= evt.titleEn %>"><%= evt.titleMr %></h3>
+            <p style="font-size: 1.1rem; color: #555; margin: 0; display: flex; align-items: center; gap: 0.5rem;">
+              <i class="bi bi-calendar3"></i>
+              <span data-mr="<%= evt.dateMr %>" data-en="<%= evt.dateEn %>"><%= evt.dateMr %></span>
+            </p>
+          </div>
+        </div>
+      <% }); %>
+    </div>
+
+  </div>
+</section>
+
+<%- include('partials/footer') %>

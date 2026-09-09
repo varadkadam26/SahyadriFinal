@@ -1,0 +1,148 @@
+<%- include('partials/header') %>
+
+  <section class="page-hero-banner">
+    <div class="container">
+      <h1 data-i18n="donate_title">देणगी / Donate</h1>
+    </div>
+  </section>
+
+  <section class="main-content-gradient" style="padding: 4rem 0;">
+    <div class="container" style="max-width: 920px;">
+
+      <!-- OFFICIAL UPI QR CODE & SCREENSHOT UPLOAD FORM -->
+      <div id="modeQR" class="card-temple" style="padding: 2.5rem; border: 2px solid var(--royal-gold);">
+        <div style="text-align: center; margin-bottom: 2rem;">
+          <span style="background: rgba(245, 158, 11, 0.15); color: #7F1D1D; border: 1px solid #F59E0B; padding: 6px 16px; border-radius: 20px; font-weight: 800; font-size: 0.88rem; display: inline-flex; align-items: center; gap: 6px;">
+            <i class="fa-solid fa-shield-halved" style="color: #D97706;"></i>
+            <span class="lang-mr">अधिकृत QR कोडद्वारे देणगी (पावती ईमेलवर पाठवली जाईल)</span>
+            <span class="lang-en">Official QR Payment (Receipt Emailed Instantly)</span>
+          </span>
+
+          <h2 style="font-size: 1.8rem; color: var(--temple-maroon); margin-top: 1rem; margin-bottom: 0.4rem;">
+            <span class="lang-mr">स्कॅन करून देणगी द्या (Scan & Pay)</span>
+            <span class="lang-en">Scan QR & Donate</span>
+          </h2>
+          <p style="color: var(--text-muted); font-size: 0.95rem;">
+            <span class="lang-mr">कोणत्याही UPI ॲपवरून (GPay, PhonePe, Paytm, BHIM) स्कॅन करा व पेमेंट झाल्यावर स्क्रीनशॉट अपलोड करा.</span>
+            <span class="lang-en">Scan via any UPI App (GPay, PhonePe, Paytm, BHIM), then upload your payment receipt screenshot below.</span>
+          </p>
+        </div>
+
+        <!-- Official QR Code Showcase Frame -->
+        <div style="background: linear-gradient(135deg, #FFF9F0, #FEF3E2); border: 2px dashed #D97706; padding: 1.8rem; border-radius: 16px; text-align: center; margin-bottom: 2.5rem; box-shadow: 0 4px 20px rgba(0,0,0,0.06);">
+          <div style="display: inline-block; background: #FFFFFF; padding: 1rem; border-radius: 12px; border: 3px solid #7F1D1D; box-shadow: 0 6px 20px rgba(127,29,29,0.15); margin-bottom: 1rem;">
+            <img src="/images/sahyadri_qr.png" alt="Sahyadri Krida Mandal Official QR Code" style="max-width: 260px; width: 100%; height: auto; display: block; border-radius: 6px;">
+          </div>
+          
+          <h4 style="color: #7F1D1D; font-size: 1.25rem; font-weight: 800; margin: 0 0 6px 0;">
+            SAHYADRI KRIDA MANDAL
+          </h4>
+          <div style="font-family: monospace; font-size: 1.15rem; font-weight: bold; color: #B45309; letter-spacing: 1px;">
+            037327011550007 14962340
+          </div>
+          <p style="font-size: 0.85rem; color: #64748B; margin-top: 6px; font-weight: 600;">
+            <i class="fa-solid fa-circle-check" style="color: #16A34A; margin-right: 4px;"></i> Accepted via Google Pay, PhonePe, Paytm, BHIM & All Banks
+          </p>
+        </div>
+
+        <!-- Manual QR Form -->
+        <form id="manualQRForm" enctype="multipart/form-data">
+          <!-- Custom Amount -->
+          <div style="margin-bottom: 1.5rem;">
+            <label style="display: block; font-size: 0.9rem; font-weight: 700; margin-bottom: 0.4rem; color: var(--text-main);">
+              <span class="lang-mr">देणगी दिलेली रक्कम (₹) *</span>
+              <span class="lang-en">Donated Amount (₹) *</span>
+            </label>
+            <input type="number" id="qrAmount" min="11" required placeholder="उदा. ५०१ / 1100" style="width: 100%; padding: 0.85rem 1.2rem; border-radius: var(--radius-sm); border: 1px solid var(--border-gold); font-size: 1.1rem; font-weight: 700; color: var(--temple-maroon);">
+          </div>
+
+          <!-- Donor Name -->
+          <div style="margin-bottom: 1.5rem;">
+            <label style="display: block; font-size: 0.9rem; font-weight: 700; margin-bottom: 0.4rem; color: var(--text-main);">
+              <span class="lang-mr">देणगीदाराचे संपूर्ण नाव *</span>
+              <span class="lang-en">Donor Full Name *</span>
+            </label>
+            <input type="text" id="qrName" required placeholder="संपूर्ण नाव टाका | Enter Full Name" style="width: 100%; padding: 0.75rem 1rem; border-radius: var(--radius-sm); border: 1px solid var(--border-gold); font-size: 0.95rem;">
+          </div>
+
+          <!-- Phone & Email Grid -->
+          <div class="form-grid-2" style="margin-bottom: 1.5rem;">
+            <div>
+              <label style="display: block; font-size: 0.9rem; font-weight: 700; margin-bottom: 0.4rem; color: var(--text-main);">
+                <span class="lang-mr">मोबाईल नंबर *</span>
+                <span class="lang-en">Mobile Number *</span>
+              </label>
+              <input type="tel" id="qrPhone" required placeholder="१० अंकी मोबाईल नंबर" style="width: 100%; padding: 0.75rem 1rem; border-radius: var(--radius-sm); border: 1px solid var(--border-gold); font-size: 0.95rem;">
+            </div>
+
+            <div>
+              <label style="display: block; font-size: 0.9rem; font-weight: 700; margin-bottom: 0.4rem; color: var(--text-main);">
+                <span class="lang-mr">ईमेल पत्ता (PDF पावतीसाठी आवश्यक) *</span>
+                <span class="lang-en">Email Address (Required for PDF Receipt) *</span>
+              </label>
+              <input type="email" id="qrEmail" required placeholder="पावती पाठवण्यासाठी ईमेल | yourname@gmail.com" style="width: 100%; padding: 0.75rem 1rem; border-radius: var(--radius-sm); border: 1px solid var(--border-gold); font-size: 0.95rem;">
+            </div>
+          </div>
+
+          <!-- Category & Transaction UTR -->
+          <div class="form-grid-2" style="margin-bottom: 1.5rem;">
+            <div>
+              <label style="display: block; font-size: 0.9rem; font-weight: 700; margin-bottom: 0.4rem; color: var(--text-main);">
+                <span class="lang-mr">सेवा प्रकार / Category</span>
+                <span class="lang-en">Seva Category</span>
+              </label>
+              <select id="qrCategory" style="width: 100%; padding: 0.75rem 1rem; border-radius: var(--radius-sm); border: 1px solid var(--border-gold); font-size: 0.95rem; background: #FFFFFF;">
+                <option value="General Mandal Donation & Seva">सामान्य देणगी व मंडळ सेवा</option>
+                <option value="Annadan Mahaprasad Seva">अन्नदान महाप्रसाद सेवा</option>
+                <option value="Mandap & Pushpa Alankar Seva">मंडप व पुष्प अलंकार सेवा</option>
+                <option value="Modak & Prasad Seva">मोदक व प्रसाद सेवा</option>
+                <option value="Cultural & Social Work Fund">सांस्कृतिक व सामाजिक उपक्रम निधी</option>
+              </select>
+            </div>
+
+            <div>
+              <label style="display: block; font-size: 0.9rem; font-weight: 700; margin-bottom: 0.4rem; color: var(--text-main);">
+                <span class="lang-mr">पेमेंट UTR / रेफरन्स नंबर (पर्यायी)</span>
+                <span class="lang-en">Payment UTR / Ref No (Optional)</span>
+              </label>
+              <input type="text" id="qrRef" placeholder="१२ अंकी UTR किंवा Txn ID" style="width: 100%; padding: 0.75rem 1rem; border-radius: var(--radius-sm); border: 1px solid var(--border-gold); font-size: 0.95rem;">
+            </div>
+          </div>
+
+          <!-- PAN Card (Optional) -->
+          <div style="margin-bottom: 1.5rem;">
+            <label style="display: block; font-size: 0.9rem; font-weight: 700; margin-bottom: 0.4rem; color: var(--text-main);">
+              <span class="lang-mr">पॅन कार्ड नंबर (पर्यायी)</span>
+              <span class="lang-en">PAN Card Number (Optional)</span>
+            </label>
+            <input type="text" id="qrPan" placeholder="उदा. ABCDE1234F" style="width: 100%; padding: 0.75rem 1rem; border-radius: var(--radius-sm); border: 1px solid var(--border-gold); font-size: 0.95rem; text-transform: uppercase;">
+          </div>
+
+          <!-- Screenshot File Upload Input -->
+          <div style="margin-bottom: 2rem; background: #FFFDF9; border: 2px dashed var(--border-gold); padding: 1.5rem; border-radius: 12px; text-align: center;">
+            <label style="display: block; font-size: 1rem; font-weight: 800; margin-bottom: 0.5rem; color: #7F1D1D;">
+              <i class="fa-solid fa-cloud-arrow-up" style="color: var(--primary-saffron); margin-right: 6px;"></i>
+              <span class="lang-mr">पेमेंट स्क्रीनशॉट अपलोड करा *</span>
+              <span class="lang-en">Upload Payment Screenshot *</span>
+            </label>
+            <p style="font-size: 0.85rem; color: #64748B; margin-bottom: 1rem;">
+              <span class="lang-mr">जीपे / फोनपे / पेटीएम मधील यशस्वी पेमेंटचा स्क्रीनशॉट निवडा (Image Format: PNG, JPG, JPEG)</span>
+              <span class="lang-en">Select successful payment screenshot from GPay / PhonePe / Paytm (PNG, JPG)</span>
+            </p>
+            <input type="file" id="qrScreenshot" accept="image/*" required style="display: block; margin: 0 auto; max-width: 320px; font-size: 0.9rem;">
+          </div>
+
+          <button type="submit" id="btnQRSubmit" class="btn btn-primary" style="width: 100%; padding: 0.95rem 1.2rem; font-size: 1.05rem; font-weight: 800; background: linear-gradient(135deg, #7F1D1D, #5C0015); border: none; border-radius: 30px; box-shadow: 0 4px 18px rgba(127,29,29,0.3); white-space: normal; line-height: 1.3;">
+            <span id="btnQRText">
+              <span class="lang-mr">देणगी जमा करा व पावती मिळवा</span>
+              <span class="lang-en">Submit & Get Receipt</span>
+            </span>
+            <i class="fa-solid fa-paper-plane" style="margin-left: 8px;"></i>
+          </button>
+        </form>
+      </div>
+
+    });
+  </script>
+
+<%- include('partials/footer') %>
