@@ -14,7 +14,7 @@
 
     <!-- Section Header -->
     <div class="section-header" style="margin-bottom: 2.5rem;">
-      <h2 class="section-title fit-about-title" style="white-space: nowrap !important; font-size: clamp(1.1rem, 4.8vw, 2.3rem) !important; text-align: center; max-width: 100%; overflow: hidden;">
+      <h2 class="section-title" style="white-space: nowrap !important; font-size: clamp(10px, 4.5vw, 2.3rem) !important; text-align: center; max-width: 100%; overflow: hidden;">
         <span class="lang-mr">मंडळाचा गौरवशाली इतिहास</span>
         <span class="lang-en">Glorious History of the Mandal</span>
       </h2>
@@ -27,7 +27,7 @@
 
     <!-- Main History Card -->
     <div style="background: #FFFFFF; border-radius: 14px; padding: clamp(1.2rem, 3.5vw, 2.2rem); margin-bottom: 1.75rem; box-shadow: 0 4px 20px rgba(127,29,29,0.06), 0 1px 4px rgba(0,0,0,0.04); border: 1px solid rgba(212,175,55,0.25);">
-      <h3 class="fit-about-title" style="font-family: var(--font-en-head); font-size: clamp(1.15rem, 3.8vw, 1.65rem); color: var(--temple-maroon); margin-bottom: 1.1rem; border-left: 4px solid var(--royal-gold); padding-left: 0.85rem; line-height: 1.35; white-space: nowrap; overflow: hidden; display: block; max-width: 100%;">
+      <h3 style="font-family: var(--font-en-head); font-size: clamp(10px, 4.2vw, 1.65rem) !important; color: var(--temple-maroon); margin-bottom: 1.1rem; border-left: 4px solid var(--royal-gold); padding-left: 0.85rem; line-height: 1.35; white-space: nowrap; overflow: hidden; display: block; max-width: 100%;">
         <span class="lang-mr">मंडळाचा गौरवशाली इतिहास</span>
         <span class="lang-en">Glorious History of the Mandal</span>
       </h3>
@@ -98,7 +98,7 @@
         document.querySelectorAll(".fit-about-title").forEach(el => {
           el.style.fontSize = "";
           let size = parseFloat(window.getComputedStyle(el).fontSize);
-          while (el.scrollWidth > el.clientWidth && size > 13) {
+          while (el.scrollWidth > el.clientWidth && size > 6) {
             size -= 0.5;
             el.style.fontSize = size + "px";
           }

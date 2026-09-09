@@ -79,7 +79,7 @@
   </script>
   <script src="/js/i18n.js"></script>
   <!-- Sahyadri Krida Mandal Stylesheet -->
-  <link rel="stylesheet" href="/css/style.css?v=1.0.0">
+  <link rel="stylesheet" href="/css/style.css?v=1.0.5">
 
   <style>
     /* UNIFIED SINGLE SECTION HEADER - FORCIBLY MERGE TOPBAR AND NAVBAR */
@@ -218,27 +218,27 @@
       .hero-carousel {
         height: 100vh !important;
         height: 100dvh !important;
-        max-height: 850px !important;
-        min-height: 620px !important;
+        max-height: none !important;
+        min-height: 500px !important;
         position: relative !important;
         overflow: hidden !important;
       }
 
       .hero-slide-bg {
-        filter: brightness(0.68) contrast(1.05) saturate(1.08) !important;
+        filter: brightness(0.9) contrast(1.1) saturate(1.15) !important;
+        image-rendering: -webkit-optimize-contrast;
+        image-rendering: high-quality;
       }
 
-      /* Precise mobile alignment & framing for each slideshow photo */
-      .hero-carousel .hero-slide-bg.hero-img-4 {
-        object-position: 50% 5% !important;
-      }
-
+      /* Mobile Hero Sliders 1 & 2: Center horizontally (50%) */
+      .hero-carousel .hero-slide-bg.hero-img-4,
       .hero-carousel .hero-slide-bg.hero-img-5 {
-        object-position: 76% 28% !important;
+        object-position: 50% 0% !important;
       }
-
+      
+      /* Mobile Hero Slider 3: Ganpati is on the right side of the photo, focus on 80% to center him */
       .hero-carousel .hero-slide-bg.hero-img-6 {
-        object-position: 77% 12% !important;
+        object-position: 80% 0% !important;
       }
 
       .hero-mobile-content {
@@ -500,15 +500,15 @@
           <img src="/images/sahyadri_logo_transparent.png" alt="Sahyadri Krida Mandal Logo"
             style="width: 100%; height: 100%; object-fit: contain; position: relative; z-index: 1;">
         </div>
-        <div class="brand-text" style="display: flex; align-items: center; margin-left: 15px;">
+        <div class="brand-text" style="display: flex; align-items: center; margin-left: 10px; min-width: 0;">
           <style>
             .sahyadri-text-logo {
               height: 32px;
               width: auto;
+              max-width: 100%;
               object-fit: contain;
               margin-top: 3px;
               transition: all 0.3s ease;
-              /* Golden Light Yellow (#FFE8C2) with glow */
               filter: brightness(0) saturate(100%) invert(88%) sepia(21%) saturate(928%) hue-rotate(335deg) brightness(106%) contrast(105%) drop-shadow(0 0 10px rgba(255, 232, 194, 0.8));
             }
 
@@ -516,6 +516,12 @@
               .sahyadri-text-logo {
                 height: 40px;
                 margin-top: 5px;
+              }
+            }
+
+            @media (max-width: 480px) {
+              .sahyadri-text-logo {
+                height: 24px;
               }
             }
           </style>

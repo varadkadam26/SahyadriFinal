@@ -29,7 +29,8 @@
           max-width: 980px;
           margin: 0 auto;
           background: transparent;
-          padding: 1rem 0;
+          overflow: visible;
+          padding: 40px 0;
           display: flex;
           align-items: center;
           justify-content: center;
@@ -384,7 +385,7 @@
       <div class="year-contents-wrapper" style="max-width: 1000px; margin: 0 auto;">
         <% allYears.forEach(year => { %>
           <div class="year-content" data-content-year="<%= year %>" style="display: none; padding: 2rem 0;">
-            <div class="<%= (year === '2024' || year === '2023' || year === '2012' || year === '2013' || year === '2014' || year === '2015' || year === '2016' || year === '2017' || year === '2018' || glimpsesData.filter(item => item.year === year).length === 4) ? 'grid-2x2-year' : 'grid-3' %>">
+            <div class="<%= (parseInt(year, 10) >= 2005 && parseInt(year, 10) <= 2018) || year === '2023' || year === '2024' || glimpsesData.filter(item => item.year === year).length === 4 ? 'grid-2x2-year' : 'grid-3' %>">
               <% glimpsesData.filter(item => item.year === year).forEach(item => { %>
                 <div class="card-temple gallery-card-item gold-motion-frame reveal-on-scroll"
                   data-category="<%= item.category %>"
@@ -399,22 +400,13 @@
                     data-lightbox-caption-en="<%= item.descEn || item.desc %>">
                     <% if (item.images && item.images.length > 0) { %>
                       <% item.images.forEach(img => { %>
-                        <img src="<%= img %>" alt="<%= item.title %>" style="width: <%= 100/item.images.length %>%; height: 100%; object-fit: contain;">
+                        <img src="<%= img %>" alt="<%= item.title %>" style="width: <%= 100/item.images.length %>%; height: 100%; object-fit: cover;">
                       <% }) %>
                     <% } else { %>
-                      <img src="<%= item.image %>" alt="<%= item.title %>" style="width: 100%; height: 100%; object-fit: contain;">
+                      <img src="<%= item.image %>" alt="<%= item.title %>" style="width: 100%; height: 100%; object-fit: cover;">
                     <% } %>
                   </div>
-                  <div class="glimpse-card-body">
-                    <div>
-                      <h3 style="font-size: 1.18rem; color: var(--temple-maroon); margin-bottom: 0; line-height: 1.35;"><span
-                          class="lang-mr">
-                          <%= item.titleMr || item.title %>
-                        </span><span class="lang-en">
-                          <%= item.titleEn || item.title %>
-                        </span></h3>
-                    </div>
-                  </div>
+
                 </div>
               <% }); %>
             </div>
