@@ -91,7 +91,6 @@ module.exports = {
   },
 
   // Download PDF Receipt
->>>>>>> origin/main
   async downloadDonationReceipt(req, res) {
     const { receiptNo } = req.params;
     const donation = await db.getDonationByReceipt(receiptNo);
