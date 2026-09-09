@@ -29,7 +29,8 @@
           max-width: 980px;
           margin: 0 auto;
           background: transparent;
-          padding: 1rem 0;
+          overflow: visible;
+          padding: 40px 0;
           display: flex;
           align-items: center;
           justify-content: center;
@@ -405,16 +406,7 @@
                       <img src="<%= item.image %>" alt="<%= item.title %>" style="width: 100%; height: 100%; object-fit: contain;">
                     <% } %>
                   </div>
-                  <div class="glimpse-card-body">
-                    <div>
-                      <h3 style="font-size: 1.18rem; color: var(--temple-maroon); margin-bottom: 0; line-height: 1.35;"><span
-                          class="lang-mr">
-                          <%= item.titleMr || item.title %>
-                        </span><span class="lang-en">
-                          <%= item.titleEn || item.title %>
-                        </span></h3>
-                    </div>
-                  </div>
+
                 </div>
               <% }); %>
             </div>
