@@ -21,7 +21,7 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="apple-mobile-web-app-title" content="Sahyadri Krida Mandal">
 
-  <title><%= typeof title !== 'undefined' && title ? title : seo.title %></title>
+  <title><%= seo.title %></title>
   <meta name="description" content="<%= seo.description %>">
   <meta name="robots" content="<%= typeof noindex !== 'undefined' && noindex ? 'noindex, nofollow' : 'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1' %>">
   <meta name="google-site-verification" content="RPYCXxWBarYuzv4WD-WXYm9lrrQQHtpTywUuRhj2sbQ">
@@ -29,7 +29,7 @@
 
   <!-- Open Graph & Social Sharing Meta Tags -->
   <meta property="og:site_name" content="Sahyadri Krida Mandal">
-  <meta property="og:title" content="<%= typeof title !== 'undefined' && title ? title : seo.title %>">
+  <meta property="og:title" content="<%= seo.title %>">
   <meta property="og:description" content="<%= seo.description %>">
   <meta property="og:image" content="<%= seo.image %>">
   <meta property="og:url" content="<%= seo.canonicalUrl %>">
@@ -38,7 +38,7 @@
 
   <!-- Twitter Cards -->
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="<%= typeof title !== 'undefined' && title ? title : seo.title %>">
+  <meta name="twitter:title" content="<%= seo.title %>">
   <meta name="twitter:description" content="<%= seo.description %>">
   <meta name="twitter:image" content="<%= seo.image %>">
 

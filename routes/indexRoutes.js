@@ -24,7 +24,6 @@ router.get('/committee', yatraController.renderCommitteePage);
 // Distinguished Visitors (Celebrities & Politicians)
 router.get('/visitors', (req, res) => {
   res.render('visitors', {
-    title: 'मान्यवर भेटी | Distinguished Visitors | Sahyadri Krida Mandal',
     activeTab: 'visitors'
   });
 });
@@ -32,7 +31,6 @@ router.get('/visitors', (req, res) => {
 // Advertisement Page
 router.get('/advertisement', (req, res) => {
   res.render('advertisement', {
-    title: 'जाहिरात | Sahyadri Krida Mandal',
     activeTab: 'advertisement'
   });
 });
@@ -40,7 +38,6 @@ router.get('/advertisement', (req, res) => {
 // Contact Us Page (With Embedded Google Maps)
 router.get('/contact', (req, res) => {
   res.render('contact', {
-    title: 'आमचे संपर्क | Sahyadri Krida Mandal',
     activeTab: 'contact'
   });
 });

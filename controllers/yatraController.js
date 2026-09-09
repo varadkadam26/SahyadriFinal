@@ -151,7 +151,6 @@ module.exports = {
   renderHomePage(req, res) {
     const status = db.getYatraStatus();
     res.render('index', {
-      title: 'Sahyadri Krida Mandal',
       activeTab: 'home',
       yatraStatus: status,
       scheduleData: scheduleData.slice(0, 4),
@@ -163,7 +162,6 @@ module.exports = {
   // Render About Us Page
   renderAboutPage(req, res) {
     res.render('about', {
-      title: 'आमच्याबद्दल | Sahyadri Krida Mandal Official',
       activeTab: 'about'
     });
   },
@@ -172,7 +170,6 @@ module.exports = {
   renderSchedulePage(req, res) {
     const status = db.getYatraStatus();
     res.render('schedule', {
-      title: 'गणेशोत्सव कार्यसूची व आरती वेळ | Sahyadri Krida Mandal',
       activeTab: 'schedule',
       yatraStatus: status,
       scheduleData
@@ -182,7 +179,6 @@ module.exports = {
   // Render Glimpses Page
   renderGlimpsesPage(req, res) {
     res.render('glimpses', {
-      title: 'वर्षभरातील क्षणचित्रे | Sahyadri Krida Mandal',
       activeTab: 'glimpses',
       glimpsesData
     });
@@ -191,7 +187,6 @@ module.exports = {
   // Render Decade Gallery (Renamed from Photo Booth)
   renderPhotoBoothPage(req, res) {
     res.render('photo-booth', {
-      title: 'दशकातील क्षणचित्रे (२०१५-२०२५) | Sahyadri Krida Mandal',
       activeTab: 'photobooth',
       glimpsesData
     });
@@ -200,7 +195,6 @@ module.exports = {
   // Render Social Work Page
   renderSocialWorkPage(req, res) {
     res.render('social-work', {
-      title: 'सामाजिक कार्य व सेवा | Sahyadri Krida Mandal',
       activeTab: 'socialwork',
       socialWorkData
     });
@@ -208,7 +202,6 @@ module.exports = {
 
   renderCommitteePage(req, res) {
     res.render('committee', {
-      title: 'कार्यकारिणी समिती | Sahyadri Krida Mandal',
       activeTab: 'committee',
       committeeData
     });
