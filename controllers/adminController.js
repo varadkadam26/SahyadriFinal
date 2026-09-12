@@ -3,8 +3,8 @@ const twilio = require('../config/twilio');
 const mailer = require('../config/mailer');
 const pdfController = require('./pdfController');
 
-const ADMIN_USER = process.env.ADMIN_USERNAME || 'admin';
-const ADMIN_PASS = process.env.ADMIN_PASSWORD || 'admin123';
+const ADMIN_USER = process.env.ADMIN_USERNAME || 'sahyadri_admin';
+const ADMIN_PASS = process.env.ADMIN_PASSWORD || 'Sahyadri@2026';
 
 let activeAdminSessions = new Set();
 
@@ -36,7 +36,7 @@ module.exports = {
       title: 'Admin Desk | Sahyadri Krida Mandal',
       activeTab: 'admin',
       error: null,
-      username: 'admin'
+      username: ''
     });
   },
 
