@@ -29,57 +29,42 @@ module.exports = {
   async submitManualQRDonation(req, res) {
     try {
       const {
-        donor_name, phone, email, amount,
-        category, pan_number, payment_ref
+        donor_name, phone, email, amount, payment_ref
       } = req.body;
 
-      if (!donor_name || !phone || !amount || parseFloat(amount) <= 0) {
+      if (!donor_name || !phone || !amount || parseFloat(amount) <= 0 || !payment_ref || !payment_ref.trim()) {
         return res.status(400).json({
           success: false,
-          message: 'कृपया तुमचे नाव, मोबाईल नंबर व देणगी रक्कम भरा. (Please enter your name, phone number, and donation amount.)'
+          message: 'कृपया तुमचे नाव, मोबाईल नंबर, देणगी रक्कम व UTR नंबर भरा. (Please enter name, phone, amount and UTR Number.)'
         });
       }
 
       const donationData = {
-        receipt_no: `MCC-REC-2026-${Math.floor(1000 + Math.random() * 9000)}`,
+        receipt_no: `SKM-REC-2026-${Math.floor(1000 + Math.random() * 9000)}`,
         donor_name: donor_name.trim(),
         phone: phone.trim(),
         email: (email || '').trim(),
         amount: parseFloat(amount),
-        category: category || 'General Mandal Donation & Seva',
-        payment_id: (payment_ref || '').trim() || `UPI_${Date.now()}`,
+        category: 'General Mandal Donation & Seva',
+        payment_id: payment_ref.trim(),
         order_id: `qr_manual_${Date.now()}`,
-        pan_number: (pan_number || '').toUpperCase().trim(),
-        status: 'SUCCESS'
+        pan_number: '',
+        status: 'PENDING'
       };
 
       const createdDonation = await db.createDonation(donationData);
-      db.addLog('DONATION', `New QR Donation received: ₹${createdDonation.amount} from ${createdDonation.donor_name} (UTR: ${createdDonation.payment_id})`);
+      db.addLog('DONATION', `New QR Donation submitted (Pending Approval): ₹${createdDonation.amount} from ${createdDonation.donor_name} (UTR: ${createdDonation.payment_id})`);
 
-      // Generate PDF Receipt Buffer
-      let pdfBuffer = null;
-      try {
-        pdfBuffer = await pdfController.generateDonationPDFBuffer(createdDonation);
-      } catch (err) {
-        console.error('PDF receipt buffer generation error:', err.message);
-      }
-
-      const screenshotPath = req.file ? req.file.path : null;
-
-      // Concurrently dispatch Email with PDF Receipt Attachment, Google Sheets sync, & Google Drive backup
+      // Concurrently sync data to Google Sheets & Google Drive backup ONLY (No instant receipt email/SMS)
       Promise.allSettled([
-        mailer.sendDonationEmail(createdDonation, pdfBuffer, screenshotPath),
         googleSheets.appendDonation(createdDonation),
         db.getDonations().then(donations => googleDrive.backupDatabaseToDrive({ donations, mockStore: db.mockStore }))
       ]).catch(err => console.error('Manual donation sync error:', err.message));
 
-      // Dispatch SMS notification via Twilio
-      twilio.sendDonationReceiptSMS(createdDonation).catch(err => console.error('Donation SMS error:', err));
-
       res.json({
         success: true,
         receipt_no: createdDonation.receipt_no,
-        message: 'जय गणेश! तुमची देणगी व पेमेंट स्क्रीनशॉट यशस्वीरित्या नोंदवले गेले आहेत. अधिकृत देणगी पावती ईमेलवर पाठवली गेली आहे.'
+        message: 'जय गणेश! तुमची देणगी व यूटीआर (UTR) माहिती नोंदवली गेली आहे. मंडळ ॲडमिनद्वारे पडताळणी व मान्यता मिळाल्यानंतर अधिकृत देणगी पावती तुमच्या ईमेलवर पाठवली जाईल.'
       });
     } catch (err) {
       console.error('Submit manual QR donation error:', err);

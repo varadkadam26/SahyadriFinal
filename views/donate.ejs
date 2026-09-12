@@ -54,8 +54,8 @@
         <div style="text-align: center; margin-bottom: 2rem;">
           <span class="donate-badge" style="background: rgba(245, 158, 11, 0.15); color: #7F1D1D; border: 1px solid #F59E0B; padding: 6px 16px; border-radius: 20px; font-weight: 800; font-size: 0.88rem; display: inline-flex; align-items: center; gap: 6px; flex-wrap: wrap; justify-content: center;">
             <i class="fa-solid fa-shield-halved" style="color: #D97706;"></i>
-            <span class="lang-mr">अधिकृत QR कोडद्वारे देणगी (पावती ईमेलवर पाठवली जाईल)</span>
-            <span class="lang-en">Official QR Payment (Receipt Emailed Instantly)</span>
+            <span class="lang-mr">अधिकृत QR कोडद्वारे देणगी (तपासणीनंतर पावती ईमेलवर पाठवली जाईल)</span>
+            <span class="lang-en">Official QR Payment (Receipt Emailed Upon Approval)</span>
           </span>
 
           <h2 class="donate-title" style="font-size: 1.8rem; color: var(--temple-maroon); margin-top: 1rem; margin-bottom: 0.4rem;">
@@ -105,7 +105,7 @@
             <input type="text" id="qrName" class="donate-input" required placeholder="Enter Full Name" style="width: 100%; padding: 0.75rem 1rem; border-radius: var(--radius-sm); border: 1px solid var(--border-gold); font-size: 0.95rem;">
           </div>
 
-          <!-- Phone & Email Grid -->
+          <!-- Phone, Email & UTR Grid -->
           <div class="form-grid-2" style="margin-bottom: 1.5rem;">
             <div>
               <label style="display: block; font-size: 0.9rem; font-weight: 700; margin-bottom: 0.4rem; color: var(--text-main);">
@@ -117,45 +117,20 @@
 
             <div>
               <label style="display: block; font-size: 0.9rem; font-weight: 700; margin-bottom: 0.4rem; color: var(--text-main);">
-                <span class="lang-mr">ईमेल पत्ता (PDF पावतीसाठी आवश्यक) *</span>
-                <span class="lang-en">Email Address (Required for PDF Receipt) *</span>
+                <span class="lang-mr">ईमेल पत्ता (पावतीसाठी आवश्यक) *</span>
+                <span class="lang-en">Email Address (Required for Receipt) *</span>
               </label>
               <input type="email" id="qrEmail" class="donate-input" required placeholder="yourname@gmail.com" style="width: 100%; padding: 0.75rem 1rem; border-radius: var(--radius-sm); border: 1px solid var(--border-gold); font-size: 0.95rem;">
             </div>
           </div>
 
-          <!-- Category & Transaction UTR -->
-          <div class="form-grid-2" style="margin-bottom: 1.5rem;">
-            <div>
-              <label style="display: block; font-size: 0.9rem; font-weight: 700; margin-bottom: 0.4rem; color: var(--text-main);">
-                <span class="lang-mr">सेवा प्रकार</span>
-                <span class="lang-en">Seva Category</span>
-              </label>
-              <select id="qrCategory" class="donate-input" style="width: 100%; padding: 0.75rem 1rem; border-radius: var(--radius-sm); border: 1px solid var(--border-gold); font-size: 0.95rem; background: #FFFFFF;">
-                <option value="General Mandal Donation & Seva">सामान्य देणगी व मंडळ सेवा</option>
-                <option value="Annadan Mahaprasad Seva">अन्नदान महाप्रसाद सेवा</option>
-                <option value="Mandap & Pushpa Alankar Seva">मंडप व पुष्प अलंकार सेवा</option>
-                <option value="Modak & Prasad Seva">मोदक व प्रसाद सेवा</option>
-                <option value="Cultural & Social Work Fund">सांस्कृतिक व सामाजिक उपक्रम निधी</option>
-              </select>
-            </div>
-
-            <div>
-              <label style="display: block; font-size: 0.9rem; font-weight: 700; margin-bottom: 0.4rem; color: var(--text-main);">
-                <span class="lang-mr">पेमेंट UTR नंबर (पर्यायी)</span>
-                <span class="lang-en">Payment UTR No (Optional)</span>
-              </label>
-              <input type="text" id="qrRef" class="donate-input" placeholder="१२ अंकी UTR किंवा Txn ID" style="width: 100%; padding: 0.75rem 1rem; border-radius: var(--radius-sm); border: 1px solid var(--border-gold); font-size: 0.95rem;">
-            </div>
-          </div>
-
-          <!-- PAN Card (Optional) -->
+          <!-- Transaction UTR Number (Compulsory) -->
           <div style="margin-bottom: 1.5rem;">
             <label style="display: block; font-size: 0.9rem; font-weight: 700; margin-bottom: 0.4rem; color: var(--text-main);">
-              <span class="lang-mr">पॅन कार्ड नंबर (पर्यायी)</span>
-              <span class="lang-en">PAN Card Number (Optional)</span>
+              <span class="lang-mr">पेमेंट UTR / Transaction No. *</span>
+              <span class="lang-en">Payment UTR / Transaction No. *</span>
             </label>
-            <input type="text" id="qrPan" class="donate-input" placeholder="ABCDE1234F" style="width: 100%; padding: 0.75rem 1rem; border-radius: var(--radius-sm); border: 1px solid var(--border-gold); font-size: 0.95rem; text-transform: uppercase;">
+            <input type="text" id="qrRef" class="donate-input" required placeholder="१२ अंकी UTR किंवा Txn ID टाका" style="width: 100%; padding: 0.75rem 1rem; border-radius: var(--radius-sm); border: 1px solid var(--border-gold); font-size: 0.95rem;">
           </div>
 
           <!-- Screenshot File Upload Input -->
@@ -174,8 +149,8 @@
 
           <button type="submit" id="btnQRSubmit" class="btn btn-primary" style="width: 100%; padding: 0.95rem 1.2rem; font-size: 1.05rem; font-weight: 800; background: linear-gradient(135deg, #7F1D1D, #5C0015); border: none; border-radius: 30px; box-shadow: 0 4px 18px rgba(127,29,29,0.3); white-space: normal; line-height: 1.3;">
             <span id="btnQRText">
-              <span class="lang-mr">देणगी जमा करा व पावती मिळवा</span>
-              <span class="lang-en">Submit & Get Receipt</span>
+              <span class="lang-mr">देणगी जमा करा</span>
+              <span class="lang-en">Submit Donation</span>
             </span>
             <i class="fa-solid fa-paper-plane" style="margin-left: 8px;"></i>
           </button>

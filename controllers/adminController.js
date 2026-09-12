@@ -1,5 +1,7 @@
 const db = require('../config/db');
 const twilio = require('../config/twilio');
+const mailer = require('../config/mailer');
+const pdfController = require('./pdfController');
 
 const ADMIN_USER = process.env.ADMIN_USERNAME || 'admin';
 const ADMIN_PASS = process.env.ADMIN_PASSWORD || 'admin123';
@@ -134,6 +136,42 @@ module.exports = {
     } catch (err) {
       console.error('Broadcast error:', err);
       res.redirect('/admin?broadcast_error=Failed to dispatch broadcast messages.');
+    }
+  },
+
+  async approveDonation(req, res) {
+    try {
+      const { receiptNo } = req.params;
+      const donation = await db.getDonationByReceipt(receiptNo);
+
+      if (!donation) {
+        return res.status(404).json({ success: false, message: 'Donation record not found.' });
+      }
+
+      const updatedDonation = await db.updateDonationStatus(receiptNo, 'SUCCESS');
+      db.addLog('DONATION', `Donation ${receiptNo} approved by Admin.`);
+
+      // Generate PDF Receipt Buffer
+      let pdfBuffer = null;
+      try {
+        pdfBuffer = await pdfController.generateDonationPDFBuffer(updatedDonation || donation);
+      } catch (err) {
+        console.error('PDF receipt buffer generation error on approval:', err.message);
+      }
+
+      // Send Email with PDF Receipt Attachment
+      mailer.sendDonationEmail(updatedDonation || donation, pdfBuffer).catch(err => console.error('Donation email dispatch error on approval:', err.message));
+
+      // Send SMS via Twilio
+      twilio.sendDonationReceiptSMS(updatedDonation || donation).catch(err => console.error('Donation SMS error on approval:', err));
+
+      res.json({
+        success: true,
+        message: `देणगी पावती ${receiptNo} मंजूर करण्यात आली आहे व ईमेलवर पावती पाठवली गेली आहे.`
+      });
+    } catch (err) {
+      console.error('Approve donation error:', err);
+      res.status(500).json({ success: false, message: 'Error approving donation.' });
     }
   }
 };

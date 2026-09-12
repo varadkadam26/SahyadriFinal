@@ -209,7 +209,7 @@
           <!-- Donations Table -->
           <div class="card-temple" style="margin-bottom: 3rem; padding: 2rem;">
             <h3 style="font-size: 1.4rem; color: var(--temple-maroon); margin-bottom: 1.2rem;">
-              प्राप्त ऑनलाइन देणगी नोंदी (Donation Receipts)
+              प्राप्त ऑनलाइन देणगी नोंदी व पडताळणी (Donation Approvals)
             </h3>
 
             <div style="overflow-x: auto;">
@@ -218,10 +218,11 @@
                   <tr style="background: var(--temple-maroon); color: var(--gold-soft);">
                     <th style="padding: 10px 14px;">पावती क्र.</th>
                     <th style="padding: 10px 14px;">देणगीदाराचे नाव</th>
-                    <th style="padding: 10px 14px;">मोबाईल</th>
+                    <th style="padding: 10px 14px;">मोबाईल / ईमेल</th>
                     <th style="padding: 10px 14px;">रक्कम (₹)</th>
-                    <th style="padding: 10px 14px;">पॅन कार्ड</th>
-                    <th style="padding: 10px 14px;">पावती डाऊनलोड</th>
+                    <th style="padding: 10px 14px;">UTR / Txn ID</th>
+                    <th style="padding: 10px 14px;">स्थिती (Status)</th>
+                    <th style="padding: 10px 14px;">ॲक्शन (Action)</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -234,19 +235,36 @@
                           <%= d.donor_name %>
                         </strong></td>
                       <td style="padding: 10px 14px;">
-                        <%= d.phone %>
+                        <%= d.phone %><br><small style="color: #64748B;"><%= d.email || 'N/A' %></small>
                       </td>
                       <td style="padding: 10px 14px; font-weight: 800; color: var(--temple-maroon);">₹ <%=
                           parseFloat(d.amount).toLocaleString('en-IN') %>
                       </td>
-                      <td style="padding: 10px 14px;">
-                        <%= d.pan_number || 'N/A' %>
+                      <td style="padding: 10px 14px; font-family: monospace; font-weight: 700; color: #B45309;">
+                        <%= d.payment_id || d.payment_ref || 'N/A' %>
                       </td>
                       <td style="padding: 10px 14px;">
-                        <a href="/download-receipt/<%= d.receipt_no %>" class="btn btn-outline"
-                          style="padding: 2px 10px; font-size: 0.8rem;">
-                          PDF पावती
-                        </a>
+                        <% if (d.status === 'PENDING') { %>
+                          <span style="background: #FEF3C7; color: #92400E; padding: 4px 10px; border-radius: 12px; font-size: 0.8rem; font-weight: 800;">
+                            ⏳ प्रलंबित (Pending)
+                          </span>
+                        <% } else { %>
+                          <span style="background: #D1FAE5; color: #065F46; padding: 4px 10px; border-radius: 12px; font-size: 0.8rem; font-weight: 800;">
+                            ✅ मंजूर (Approved)
+                          </span>
+                        <% } %>
+                      </td>
+                      <td style="padding: 10px 14px; white-space: nowrap;">
+                        <% if (d.status === 'PENDING') { %>
+                          <button type="button" onclick="approveDonation('<%= d.receipt_no %>', this)" class="btn" style="background: #16A34A; color: #FFFFFF; padding: 5px 12px; font-size: 0.82rem; font-weight: 700; border: none; border-radius: 6px; cursor: pointer;">
+                            <i class="fa-solid fa-check-double"></i> मंजूर करा व ईमेल पाठवा
+                          </button>
+                        <% } else { %>
+                          <a href="/download-receipt/<%= d.receipt_no %>" class="btn btn-outline"
+                            style="padding: 3px 10px; font-size: 0.8rem;">
+                            <i class="fa-solid fa-file-pdf"></i> PDF पावती
+                          </a>
+                        <% } %>
                       </td>
                     </tr>
                     <% }); %>
@@ -254,6 +272,36 @@
               </table>
             </div>
           </div>
+
+          <script>
+            async function approveDonation(receiptNo, btnElem) {
+              if (!confirm(`पावती क्र. ${receiptNo} मंजूर करून देणगीदारास ईमेलवर PDF पावती पाठवायची आहे का?`)) return;
+
+              btnElem.disabled = true;
+              btnElem.innerText = 'कृपया थांबा...';
+
+              try {
+                const res = await fetch(`/admin/api/approve-donation/${receiptNo}`, {
+                  method: 'POST',
+                  headers: { 'Content-Type': 'application/json' }
+                });
+                const data = await res.json();
+                if (data.success) {
+                  alert(data.message);
+                  window.location.reload();
+                } else {
+                  alert(data.message || 'Approval failed.');
+                  btnElem.disabled = false;
+                  btnElem.innerText = 'मंजूर करा व ईमेल पाठवा';
+                }
+              } catch (err) {
+                console.error(err);
+                alert('त्रुटी आली. कृपया पुन्हा प्रयत्न करा.');
+                btnElem.disabled = false;
+                btnElem.innerText = 'मंजूर करा व ईमेल पाठवा';
+              }
+            }
+          </script>
 
     </div>
   </section>
