@@ -282,34 +282,16 @@ document.addEventListener('DOMContentLoaded', () => {
     const now = Date.now();
     const diff = countdownTarget - now;
     const flipGrid = document.getElementById('flipClockGrid');
-    const celebrationCard = document.getElementById('aagmanCelebrationCard');
     const mFlipGrid = document.getElementById('mFlipClockGrid');
-    const mCelebrationCard = document.getElementById('mAagmanCelebrationCard');
+
+    if (flipGrid) flipGrid.style.display = 'grid';
+    if (mFlipGrid) mFlipGrid.style.display = 'grid';
 
     if (diff <= 0) {
-      // Countdown finished - Aagman has arrived!
-      if (flipGrid) flipGrid.style.display = 'none';
-      if (celebrationCard) celebrationCard.style.display = 'block';
-      if (mFlipGrid) mFlipGrid.style.display = 'none';
-      if (mCelebrationCard) mCelebrationCard.style.display = 'block';
-
-      if (!confettiFiredOnArrival) {
-        confettiFiredOnArrival = true;
-        triggerAagmanConfetti();
-        // Repeat confetti bursts periodically during celebration
-        window.setInterval(triggerAagmanConfetti, 12000);
-      }
-
       Object.entries({ days: '00', hours: '00', mins: '00', secs: '00' })
         .forEach(([key, value]) => animateCountdownUnit(key, value));
       return;
     }
-
-    // Countdown active
-    if (flipGrid) flipGrid.style.display = 'grid';
-    if (celebrationCard) celebrationCard.style.display = 'none';
-    if (mFlipGrid) mFlipGrid.style.display = 'grid';
-    if (mCelebrationCard) mCelebrationCard.style.display = 'none';
 
     const safeDiff = diff > 0 ? diff : 0;
     const values = {
